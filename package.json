@@ -1,0 +1,33 @@
+{
+  "name": "detect-wagtail",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Detect whether a page or site is built with Wagtail",
+  "author": "Thibaud Colas",
+  "license": "MIT",
+  "homepage": "https://github.com/thibaudcolas/detect-wagtail",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thibaudcolas/detect-wagtail.git"
+  },
+  "bugs": {
+    "url": "https://github.com/thibaudcolas/detect-wagtail/issues"
+  },
+  "keywords": [
+    "detect-wagtail",
+    "detect",
+    "wagtail"
+  ],
+  "devDependencies": {
+    "eslint": "^7.13.0",
+    "jest": "^26.6.3",
+    "prettier": "2.1.2"
+  },
+  "scripts": {
+    "prepare": "./.githooks/deploy.sh",
+    "lint": "eslint --report-unused-disable-directives . && prettier --check '**/?(.)*.{md,css,scss,js,json,json5,yaml,yml,html}'",
+    "format": "prettier --write '**/?(.)*.{md,css,scss,js,json,json5,yaml,yml,html}'",
+    "test": "jest",
+    "test:watch": "jest --watch"
+  }
+}
