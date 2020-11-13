@@ -45,9 +45,8 @@ describe("detect-wagtail false negatives", () => {
 
 describe("detect-wagtail false positives", () => {
   test.each`
-    label                    | fragment
-    ${"width-ddd webflow"}   | ${"https://global-uploads.webflow.com/5e25051eb2b6451f92115f43/5e38e792e654da74832fe5d0_FY18-partner-favicon-Expr3ss_V2_Lj5gmrm.width-330.png"}
-    ${"width-ddd wordpress"} | ${"https://www.coventry-homes.com/wp-content/uploads/2018/05/2_WPhCEQ8.width-1800.jpg"}
+    label                                       | fragment
+    ${"placeholder, not a real false positive"} | ${"/media/images/placeholder.fill-960x540.jpg"}
   `("$label", ({ fragment }) => {
     expect(detectWagtail(fragment)).toBe(true);
   });
@@ -56,6 +55,8 @@ describe("detect-wagtail false positives", () => {
 describe("detect-wagtail true negatives", () => {
   test.each`
     label                                     | fragment
+    ${"width-ddd webflow"}                    | ${"https://global-uploads.webflow.com/5e25051eb2b6451f92115f43/5e38e792e654da74832fe5d0_FY18-partner-favicon-Expr3ss_V2_Lj5gmrm.width-330.png"}
+    ${"width-ddd wordpress"}                  | ${"https://www.coventry-homes.com/wp-content/uploads/2018/05/2_WPhCEQ8.width-1800.jpg"}
     ${"static file"}                          | ${"https://www.lacascadeinsolite.com/templates/captain/img/interface/logo.png"}
     ${"Wagtail file name uploaded elsewhere"} | ${"https://www.lacascadeinsolite.com/public/img/big/imageactus80f58601fill1920x700formatjpegjpg_5ed760695e964.jpg"}
     ${"Wagtail file name uploaded elsewhere"} | ${"/public/uploads/enticers/rahf_amandacoldlake16_2e16d0ba_fill800x400/1566488182-800w_400h_rahf_amandacoldlake16_2e16d0ba_fill800x400.jpg"}
