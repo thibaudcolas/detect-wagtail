@@ -20,7 +20,7 @@ Wagtail’s [default renditions](https://github.com/wagtail/wagtail/blob/ba6f94d
 
 Sample rendition strings, see full [image renditions documentation](https://docs.wagtail.io/en/stable/topics/images.html).
 
-```txt
+```sh
 max-1000x500
 min-500x200
 width-640
@@ -39,14 +39,10 @@ jpegquality-40
 webpquality-50
 ```
 
-WIP regular expressions:
+## Limitations
 
-```js
-(fill-\d{1,5}x\d{1,5}(-c\d{1,3})?|(max|min)-\d{1,5}x\d{1,5}|(width|height)-\d{1,5}|scale-\d{1,3})(\.(jpegquality|webpquality)-\d{1,3})?\.(jpg|jpeg|png|gif|webp|avif)
+Sites which are built with another backend, but use a Wagtail site to serve images.
 
-'\.(fill-\d{1,5}x\d{1,5}(-c\d{1,3})?|(max|min)-\d{1,5}x\d{1,5}|(width|height)-\d{1,5}|scale-\d{1,3})\.(jpg|jpeg|png|gif|webp|avif)'
-'\.(fill-\d{1,5}x\d{1,5}(-c\d{1,3})?|(max|min)-\d{1,5}x\d{1,5}|(width|height)-\d{1,5}|scale-\d{1,3})\.(jpg|jpeg|png|gif|webp|avif)'
-'\.(fill-\d{1,5}x\d{1,5}(-c\d{1,3})?|(max|min)-\d{1,5}x\d{1,5}|(width|height)-\d{1,5}|scale-\d{1,3})(\.(jpegquality|webpquality)-\d{1,3})?\.(jpg|jpeg|png|gif|webp|avif)'
-'\.(fill-\d{1,5}x\d{1,5}(-c\d{1,3})?|(max|min)-\d{1,5}x\d{1,5}|(width|height)-\d{1,5}|scale-\d{1,3}|original)(\.(jpegquality|webpquality)-\d{1,3})?\.(jpg|jpeg|png|gif|webp|avif)'
-'\.(original)(\.(jpegquality|webpquality)-\d{1,3})?\.(jpg|jpeg|png|gif|webp|avif)'
+```
+chukou1.com.html:1052:<a href="https://www.chukou1.com/HotPlatfroms/HotPlatfroms.aspx?pageName=Teezily" target="_blank"> <img alt="Teezily" src="https://pic.chukou1.com/media/images/LOGO_1.original.original.jpg" style="width: 157px;" /></a></li>
 ```
