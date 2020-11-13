@@ -43,6 +43,33 @@ webpquality-50
 
 Sites which are built with another backend, but use a Wagtail site to serve images.
 
-```
+```txt
 chukou1.com.html:1052:<a href="https://www.chukou1.com/HotPlatfroms/HotPlatfroms.aspx?pageName=Teezily" target="_blank"> <img alt="Teezily" src="https://pic.chukou1.com/media/images/LOGO_1.original.original.jpg" style="width: 157px;" /></a></li>
 ```
+
+Images uploaded to other platforms with their original Wagtail rendition file name
+
+```txt
+opencanada.org.html:424:                    src="https://opencanada.org/wp-content/themes/opencanada/assets/opencanada/images/86360915-0de18100-bc41-11ea-8ca5-c8209953bde1.original.png"
+```
+
+Images processed with pagespeed (Apache mod pagespeed?)
+
+```txt
+computest.nl.html:484:<img data-pagespeed-lazy-src='/media/images/281x158xKlantcase_AFAS_Software_7cRjkEr.original.jpg.pagespeed.ic.bkStlIpzjx.jpg' alt='' title='' src="/pagespeed_static/1.JiBnMqyl6S.gif" onload="pagespeed.lazyLoadImages.loadIfVisibleAndMaybeBeacon(this);" onerror="this.onerror=null;pagespeed.lazyLoadImages.loadIfVisibleAndMaybeBeacon(this);">
+```
+
+## Making changes to the regular expression
+
+1. Update the test suite so the known false positives and false negatives are kept in check
+2. Try the new regular expressions on the Majestic Million
+
+## WIP
+
+/\/images\/[a-zA-Z0-9._-]+\.original\.(jpg|jpeg|png|gif|webp|avif)/
+
+original_images
+
+/ at root absolute URL
+or /media/
+No further slash

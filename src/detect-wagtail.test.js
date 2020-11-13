@@ -2,16 +2,18 @@ const { detectWagtail } = require("./detect-wagtail");
 
 describe("detect-wagtail true positives", () => {
   test.each`
-    label                      | fragment
-    ${"fill-wwwxhhh"}          | ${"https://media.bethebusiness.tools/images/191017_BTB_cornwall__1213-large.2e16d0ba.fill-822x650.jpg"}
-    ${"fill-wwxhh"}            | ${"https://www.bigpicnic.net/media/images/eu-logo_skFhAar.2e16d0ba.fill-70x48.png"}
-    ${"fill with c100"}        | ${"https://d8qxmyaetw61w.cloudfront.net/media/images/Bryce-fun.2e16d0ba.fill-1046x696-c100.jpg"}
-    ${"fill with cdd"}         | ${"https://www.ynanp.gr/media/images/33.2e16d0ba.fill-400x300-c80.jpg"}
-    ${"fill with c0"}          | ${"/media/images/UE4LowPolyVehicleTh.2e16d0ba.fill-960x540-c0.jpg"}
-    ${"format-jpeg"}           | ${"/media/images/UE4LowPolyVehicleTh.2e16d0ba.fill-960x540-c0.format-jpeg.jpg"}
-    ${"width-www"}             | ${"https://www.jazzfestival.nz/media/images/video-fallback-image_1.width-1920.png"}
-    ${"height-hh"}             | ${"https://s3.amazonaws.com/files.peacecorps.gov/images/icon--laptop.height-50.png"}
-    ${"fill-.jpegquality-100"} | ${"https://buckup-ff-stories.s3.amazonaws.com/images/P1000301.2e16d0ba.fill-1440x900.jpegquality-100.jpg"}
+    label                         | fragment
+    ${"fill-wwwxhhh"}             | ${"https://media.bethebusiness.tools/images/191017_BTB_cornwall__1213-large.2e16d0ba.fill-822x650.jpg"}
+    ${"fill-wwxhh"}               | ${"https://www.bigpicnic.net/media/images/eu-logo_skFhAar.2e16d0ba.fill-70x48.png"}
+    ${"fill with c100"}           | ${"https://d8qxmyaetw61w.cloudfront.net/media/images/Bryce-fun.2e16d0ba.fill-1046x696-c100.jpg"}
+    ${"fill with cdd"}            | ${"https://www.ynanp.gr/media/images/33.2e16d0ba.fill-400x300-c80.jpg"}
+    ${"fill with c0"}             | ${"/media/images/UE4LowPolyVehicleTh.2e16d0ba.fill-960x540-c0.jpg"}
+    ${"format-jpeg"}              | ${"/media/images/UE4LowPolyVehicleTh.2e16d0ba.fill-960x540-c0.format-jpeg.jpg"}
+    ${"width-www"}                | ${"https://www.jazzfestival.nz/media/images/video-fallback-image_1.width-1920.png"}
+    ${"height-hh"}                | ${"https://s3.amazonaws.com/files.peacecorps.gov/images/icon--laptop.height-50.png"}
+    ${"height-hh catalyst cloud"} | ${"https://object-storage.nz-por-1.catalystcloud.io:443/v1/AUTH_52213f2d28354f499d85ec4722164456/catalystcloudnz_django_storage_prod/images/PaySaucered.original.height-180.jpg"}
+    ${"fill-.jpegquality-100"}    | ${"https://buckup-ff-stories.s3.amazonaws.com/images/P1000301.2e16d0ba.fill-1440x900.jpegquality-100.jpg"}
+    ${"media subfolder"}          | ${"/media/houmcorp/images/160059698_a_10_mb_para_web.original_eIOnw8p.max-800x800.jpg"}
   `("$label", ({ fragment }) => {
     expect(detectWagtail(fragment)).toBe(true);
   });
@@ -19,25 +21,33 @@ describe("detect-wagtail true positives", () => {
 
 describe("detect-wagtail false negatives", () => {
   test.each`
-    label                                     | fragment
-    ${"original bucket"}                      | ${"https://unco-assets.s3.amazonaws.com/media/images/events-tasmania.original.png"}
-    ${"original local"}                       | ${"/media/images/ic-kyiv-v-33x.original.original.png"}
-    ${"original fool"}                        | ${"https://m.foolcdn.com/media/dubs/images/Growth_Chart_RB_no-title_aug17_transparent.original.png"}
-    ${"original FEC"}                         | ${"https://www.fec.gov/resources/cms-content/images/headshot--walther.original.png"}
-    ${"original MOFO"}                        | ${"https://assets.mofoprod.net/network/images/cta.original.jpg"}
-    ${"original cfpb"}                        | ${"https://files.consumerfinance.gov/f/images/cfpb_events.original.png"}
-    ${"original directbuy"}                   | ${"/wm/images/shop-icon-db.original.png"}
-    ${"original.original"}                    | ${"https://www.netronome.com/m/images/Netronome_Web_Logo_UPE9ULO.original.original.png"}
-    ${"original.original.original"}           | ${"/media/images/image_44.original.original.original.png"}
-    ${"original.original AWS"}                | ${"https://directory-cms-public.s3.amazonaws.com/images/Lorry.original.original.jpg"}
-    ${"original in short media folder"}       | ${"/m/images/default-event-2.original.jpg"}
-    ${"original_base64"}                      | ${"https://unco-assets.s3.amazonaws.com/media/images/_brand_assets_images_logos_zapier-logo-reversed.original_5pZXPtu.png"}
-    ${"format-jpg"}                           | ${"https://www.fabrique.com/media/original_images/00-brandmr-cover-small.png.580x360_q70_crop_format-jpg.jpg"}
-    ${"max-wwwxhhh.custom-rendition"}         | ${"https://www.jazzfestival.nz/media/images/WCC_Black.original.max-400x250.grayscale_inverted.png"}
-    ${"original_images"}                      | ${"https://buckup-ff-stories.s3.amazonaws.com/original_images/Lockup_Logo_-_JPEG-1.png"}
-    ${"original_images in unusual folder"}    | ${"https://www.rada.ac.uk/media/thumbs/original_images/website_sharing_image_1200x630_pFwpfdUaAU8l.jpg"}
-    ${"original_images in unusal folder CDN"} | ${"https://bos-prd.s3.amazonaws.com/media/dd/original_images/46e7d749c2374c0416422da73c83a421.jpg"}
-    ${"text after renditions"}                | ${"https://cdn.fertighaus.de/images/finanzierungs-assistent-desktop-1600.fill-480x776.noauto.png"}
+    label                                      | fragment
+    ${"original bucket"}                       | ${"https://unco-assets.s3.amazonaws.com/media/images/events-tasmania.original.png"}
+    ${"original local"}                        | ${"/media/images/ic-kyiv-v-33x.original.original.png"}
+    ${"original media subfolder"}              | ${"/media/public/images/de-en-251.original.jpg"}
+    ${"original media bucket subfolder"}       | ${"https://s3.us-west-2.amazonaws.com/wagtail.angelcam.com/prod/media/images/social-banner.original.png"}
+    ${"original fool"}                         | ${"https://m.foolcdn.com/media/dubs/images/Growth_Chart_RB_no-title_aug17_transparent.original.png"}
+    ${"original FEC"}                          | ${"https://www.fec.gov/resources/cms-content/images/headshot--walther.original.png"}
+    ${"original MOFO"}                         | ${"https://assets.mofoprod.net/network/images/cta.original.jpg"}
+    ${"original cfpb"}                         | ${"https://files.consumerfinance.gov/f/images/cfpb_events.original.png"}
+    ${"original GCP"}                          | ${"https://storage.googleapis.com/kx-live-ih/images/icon_info_safe1x.original.png"}
+    ${"original directbuy"}                    | ${"/wm/images/shop-icon-db.original.png"}
+    ${"original.original"}                     | ${"https://www.netronome.com/m/images/Netronome_Web_Logo_UPE9ULO.original.original.png"}
+    ${"original.original.original"}            | ${"/media/images/image_44.original.original.original.png"}
+    ${"original.original AWS"}                 | ${"https://directory-cms-public.s3.amazonaws.com/images/Lorry.original.original.jpg"}
+    ${"original in short media folder"}        | ${"/m/images/default-event-2.original.jpg"}
+    ${"original aldryn-media"}                 | ${"https://corporatewebsite3789-live-21d50d57d68d-90ec9d9.aldryn-media.com/images/Gamma_logo_340breed.original.jpg"}
+    ${"original format-png"}                   | ${"/media/images/bevi_3_mob.original.format-png.png"}
+    ${"original_base64"}                       | ${"https://unco-assets.s3.amazonaws.com/media/images/_brand_assets_images_logos_zapier-logo-reversed.original_5pZXPtu.png"}
+    ${"format-jpg"}                            | ${"https://www.fabrique.com/media/original_images/00-brandmr-cover-small.png.580x360_q70_crop_format-jpg.jpg"}
+    ${"max-wwwxhhh.custom-rendition"}          | ${"https://www.jazzfestival.nz/media/images/WCC_Black.original.max-400x250.grayscale_inverted.png"}
+    ${"original_images"}                       | ${"https://buckup-ff-stories.s3.amazonaws.com/original_images/Lockup_Logo_-_JPEG-1.png"}
+    ${"original_images in unusual folder"}     | ${"https://www.rada.ac.uk/media/thumbs/original_images/website_sharing_image_1200x630_pFwpfdUaAU8l.jpg"}
+    ${"original_images in unusal folder CDN"}  | ${"https://bos-prd.s3.amazonaws.com/media/dd/original_images/46e7d749c2374c0416422da73c83a421.jpg"}
+    ${"text after renditions"}                 | ${"https://cdn.fertighaus.de/images/finanzierungs-assistent-desktop-1600.fill-480x776.noauto.png"}
+    ${"pagespeed"}                             | ${"/media/images/281x158xKlantcase_Squla.original.jpg.pagespeed.ic.Qb9TsgSE3N.jpg"}
+    ${"Wagtail-like CDN"}                      | ${"https://cdn.gloveworx.com/images/become_unstoppable.original.png"}
+    ${"Wagtail file structure to investigate"} | ${"https://fs.bitcoinmagazine.com/img/images/Screen_Shot_2017-08-18_at_01.36.47.original.png"}
   `("$label", ({ fragment }) => {
     expect(detectWagtail(fragment)).toBe(false);
   });
@@ -73,7 +83,9 @@ describe("detect-wagtail true negatives", () => {
     ${"original wordpress"}                   | ${"https://videos.files.wordpress.com/LC54dy5y/video-5e49d83688_dvd.original.jpg"}
     ${"original wordpress CDN"}               | ${"https://i0.wp.com/publichealthinsider.com/wp-content/uploads/2020/11/10000000_647691535911012_5337380651829973294_n_std.original.jpg?fit=400%2C224&#038;ssl=1&#038;resize=40%2C40"}
     ${"original PHP"}                         | ${"http://s3-eu-west-1.amazonaws.com/cdn.opinionsystem.fr/system/group/188/logo/f6559083019f26decd46fdc63ae0aeae.original.jpg"}
+    ${"original PHP 2"}                       | ${"/sites/default/files/images/patterson-gavin-speaker.original.jpg"}
     ${"original jpeg"}                        | ${"/uploads/inspiration/5dc933480b09d98942159a522233dc3b647b501f.original.jpeg"}
+    ${"original wordpress"}                   | ${"https://opencanada.org/wp-content/themes/opencanada/assets/opencanada/images/86360915-0de18100-bc41-11ea-8ca5-c8209953bde1.original.png"}
     ${"original uploaded to WordPress"}       | ${"https://parrotbreeders.org/wp-content/uploads/2020/05/home-pasta-2x-2.original.png"}
     ${"original_images on PHP site"}          | ${"/Galerie/ulicy_ploschadi/index_files/original_images/p0000002.jpg"}
     ${"original_images on another PHP site"}  | ${"https://images.fivefourclub.com/images.fivefourclub.com/images/original_images/o_category-tiles-shirts-v2-5ea23b242e9a8.jpg"}
@@ -85,6 +97,7 @@ describe("detect-wagtail true negatives", () => {
     ${"original_images pixtruder"}            | ${"//s3.amazonaws.com/pixtruder/original_images/bazaar/home.search.bg.jpg"}
     ${"original_images imagekit"}             | ${"https://ik.imagekit.io/theartling/p/original_images/AB_JP_2020_Bulloch_Pryde_Sky_Rocks__Digits_Simon_Lee_Gallery_HK_Installa_9EJ8Q4a.jpg?tr=,w-700,h-376"}
     ${"original_images oc.hu"}                | ${"https://i2.oc.hu/original_images/0x0/auto/bg_hr8joosu.jpg?v=1&hash=6af3b6bed268c677f1e7f57d6d7260b5"}
+    ${"local images folder original"}         | ${"./images/download_2_1559247989__04572.original.png"}
   `("$label", ({ fragment }) => {
     expect(detectWagtail(fragment)).toBe(false);
   });
