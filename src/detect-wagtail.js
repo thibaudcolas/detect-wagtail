@@ -3,10 +3,10 @@
 // Using a very conservative 3 digits for percentages.
 const renditions = {
   v1: /\.(fill-\d{1,5}x\d{1,5}(-c\d{1,3})?|(max|min)-\d{1,5}x\d{1,5}|(width|height)-\d{1,5}|scale-\d{1,3})(\.format-(jpeg|png|gif|webp))?(\.(jpegquality|webpquality)-\d{1,3})?\.(jpg|jpeg|png|gif|webp|avif)/,
-  conservative: /\/images\/[a-zA-Z0-9._-]+\.(fill-\d{1,5}x\d{1,5}(-c\d{1,3})?|(max|min)-\d{1,5}x\d{1,5}|(width|height)-\d{1,5}|scale-\d{1,3})(\.format-(jpeg|png|gif|webp))?(\.(jpegquality|webpquality)-\d{1,3})?\.(jpg|jpeg|png|gif|webp|avif)/,
-  originalv2: /\/images\/[a-zA-Z0-9._-]+\.((fill-\d{1,5}x\d{1,5}(-c\d{1,3})?|(max|min)-\d{1,5}x\d{1,5}|(width|height)-\d{1,5}|scale-\d{1,3})(\.format-(jpeg|png|gif|webp))?(\.(jpegquality|webpquality)-\d{1,3})?|original)\.(jpg|jpeg|png|gif|webp|avif)/,
-  original_images: /(\.(fill-\d{1,5}x\d{1,5}(-c\d{1,3})?|(max|min)-\d{1,5}x\d{1,5}|(width|height)-\d{1,5}|scale-\d{1,3})(\.(jpegquality|webpquality)-\d{1,3})?|\/original_images\/.+)\.(jpg|jpeg|png|gif|webp|avif)/,
-  experimental_lenient: /(\.(fill-\d{1,5}x\d{1,5}(-c\d{1,3})?|(max|min)-\d{1,5}x\d{1,5}|(width|height)-\d{1,5}|scale-\d{1,3}|original)(\.(jpegquality|webpquality)-\d{1,3})?|\/original_images\/).+\.(jpg|jpeg|png|gif|webp|avif)/,
+  v2: /\/images\/[a-zA-Z0-9._-]+\.(fill-\d{1,5}x\d{1,5}(-c\d{1,3})?|(max|min)-\d{1,5}x\d{1,5}|(width|height)-\d{1,5}|scale-\d{1,3})(\.format-(jpeg|png|gif|webp))?(\.(jpegquality|webpquality)-\d{1,3})?\.(jpg|jpeg|png|gif|webp|avif)/,
+  v3: /(\/images\/[a-zA-Z0-9._-]+\.(fill-\d{1,5}x\d{1,5}(-c\d{1,3})?|(max|min)-\d{1,5}x\d{1,5}|(width|height)-\d{1,5}|scale-\d{1,3})(\.format-(jpeg|png|gif|webp))?(\.(jpegquality|webpquality)-\d{1,3})?|\/media\/original_images\/[a-zA-Z0-9._-]+)\.(jpg|jpeg|png|gif|webp|avif)/,
+  conservative: /(\/images\/[a-zA-Z0-9._-]+\.(fill-\d{1,5}x\d{1,5}(-c\d{1,3})?|(max|min)-\d{1,5}x\d{1,5}|(width|height)-\d{1,5}|scale-\d{1,3})(\.format-(jpeg|png|gif|webp))?(\.(jpegquality|webpquality)-\d{1,3})?|\/media\/original_images\/[a-zA-Z0-9._-]+|\/media\/images\/[a-zA-Z0-9._-]+\.original)\.(jpg|jpeg|png|gif|webp|avif)/,
+  conservative_ish: /(\/images\/[a-zA-Z0-9._-]+\.(fill-\d{1,5}x\d{1,5}(-c\d{1,3})?|(max|min)-\d{1,5}x\d{1,5}|(width|height)-\d{1,5}|scale-\d{1,3})(\.format-(jpeg|png|gif|webp))?(\.(jpegquality|webpquality)-\d{1,3})?|\/media\/original_images\/[a-zA-Z0-9._-]+|\/media(\/[a-zA-Z0-9_-]+)?\/images\/[a-zA-Z0-9._-]+\.original)\.(jpg|jpeg|png|gif|webp|avif)/,
 };
 
 /**
