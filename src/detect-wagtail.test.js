@@ -70,6 +70,7 @@ describe("detect-wagtail false positives", () => {
 describe("detect-wagtail true negatives", () => {
   test.each`
     label                                     | fragment
+    ${"scale-dddd"}                           | ${"www.northcountrypublicradio.org/news/images/Icon310.scale-1400.png"}
     ${"width-ddd webflow"}                    | ${"https://global-uploads.webflow.com/5e25051eb2b6451f92115f43/5e38e792e654da74832fe5d0_FY18-partner-favicon-Expr3ss_V2_Lj5gmrm.width-330.png"}
     ${"width-ddd wordpress"}                  | ${"https://www.coventry-homes.com/wp-content/uploads/2018/05/2_WPhCEQ8.width-1800.jpg"}
     ${"static file"}                          | ${"https://www.lacascadeinsolite.com/templates/captain/img/interface/logo.png"}
