@@ -92,3 +92,19 @@ mca.com.au.html:77: <script>var windowApiData = {"src": "/files/images/Pipilotti
 "(?:<link[^>]*/assets/store/all-[a-z\\d]{32}\\.css[^>]+>|<script>\\s*Spree\\.(?:routes|translations|api_key))",
 "(?:<div class=\"sf-toolbar[^>]+?>[^]+<span class=\"sf-toolbar-value\">([\\d.])+|<div id=\"sfwdt[^\"]+\" class=\"[^\"]*sf-toolbar)\\;version:\\1",
 ```
+
+## Trial
+
+Based on Majestic Million dataset:
+
+- 296 strictest
+- 466 strict
+- 474 pragmatic
+- 505 less_strict_but_long
+- 522 lax
+
+Compare results:
+
+```sh
+/usr/bin/diff <(ag 'first expression' -l | sort) <(ag 'second expression' -l | sort)
+```
