@@ -7,8 +7,8 @@ const renditions = {
   v3: /(\/images\/[a-zA-Z0-9._-]+\.(fill-\d{1,5}x\d{1,5}(-c\d{1,3})?|(max|min)-\d{1,5}x\d{1,5}|(width|height)-\d{1,5}|scale-\d{1,3})(\.format-(jpeg|png|gif|webp))?(\.(jpegquality|webpquality)-\d{1,3})?|\/media\/original_images\/[a-zA-Z0-9._-]+)\.(jpg|jpeg|png|gif|webp|avif)/,
   v4: /(\/images\/[a-zA-Z0-9._-]+\.(fill-\d{1,5}x\d{1,5}(-c\d{1,3})?|(max|min)-\d{1,5}x\d{1,5}|(width|height)-\d{1,5}|scale-\d{1,3})(\.format-(jpeg|png|gif|webp))?(\.(jpegquality|webpquality)-\d{1,3})?|\/media\/original_images\/[a-zA-Z0-9._-]+|\/media\/images\/[a-zA-Z0-9._-]+\.original)\.(jpg|jpeg|png|gif|webp|avif|JPG|JPEG|PNG|GIF|WEBP|AVIF)/,
   v5: /(\/images\/[a-zA-Z0-9._-]+\.((fill|max|min)-\d+x\d+(-c\d{1,3})?|(width|height)-\d+|scale-\d{1,3})(\.format-(jpeg|png|webp))?(\.(jpeg|webp)quality-\d{1,3})?|\/media\/original_images\/[a-zA-Z0-9._-]+|\/media\/images\/[a-zA-Z0-9._-]+\.original)\./,
+  v6: /(\/images\/[a-zA-Z0-9._-]+\.((fill|max|min)-\d+x\d|(width|height|scale)-\d)|\/media\/images\/[a-zA-Z0-9._-]+\.original|\/media\/original_images\/)/,
   // Optimized for real-world relevance, with as few false positives as possible, but still some.
-  pragmatic: /(\/images\/[a-zA-Z0-9._-]+\.((fill|max|min)-\d+x\d|(width|height|scale)-\d)|\/media\/images\/[a-zA-Z0-9._-]+\.original|\/media\/original_images\/)/,
   strict: /([a-zA-Z0-9_.-]+\.[a-z]+|\/media)(\/[a-zA-Z0-9_-]+)?\/(original_images\/|images\/[a-zA-Z0-9._-]+\.((fill|max|min)-\d+x\d|(width|height|scale)-\d|original))/,
   less_strict_but_long: /(\/images\/[a-zA-Z0-9._-]+\.((fill|max|min)-\d+x\d|(width|height|scale)-\d)|([a-zA-Z0-9_.-]+\.[a-z]+|\/media)(\/[a-zA-Z0-9_-]+)?\/(images\/[a-zA-Z0-9._-]+\.original|original_images\/))/,
   // Very specific matching. No avoidable false positives.
@@ -23,7 +23,7 @@ const renditions = {
  * @return {boolean} Whether we detected Wagtail-like markup in this HTML.
  */
 const detectWagtail = (html) => {
-  return renditions.pragmatic.test(html);
+  return renditions.strict.test(html);
 };
 
 module.exports = {
