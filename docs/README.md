@@ -59,6 +59,20 @@ Images processed with pagespeed (Apache mod pagespeed?)
 computest.nl.html:484:<img data-pagespeed-lazy-src='/media/images/281x158xKlantcase_AFAS_Software_7cRjkEr.original.jpg.pagespeed.ic.bkStlIpzjx.jpg' alt='' title='' src="/pagespeed_static/1.JiBnMqyl6S.gif" onload="pagespeed.lazyLoadImages.loadIfVisibleAndMaybeBeacon(this);" onerror="this.onerror=null;pagespeed.lazyLoadImages.loadIfVisibleAndMaybeBeacon(this);">
 ```
 
+## Examples in HTML
+
+In a wide variety of elements / attributes:
+
+```txt
+b-commerces.fr.html:1011:  <div class="image-container" style="background-image: url('/media/images/beer-machine-alcohol-brewery-15929.2e16d0ba.fill-250x170_GggkweO.jpg')">
+www.venturebeyond.ca.html:406:                        src="/media/images/Venture_Beyond_-_Gillian_Thompson-.2e16d0ba.fill-200x200_seoHtyi.jpg"
+ruralindiaonline.org.html:2856:                            data-src="/media/images/bazarpar_makardona.2e16d0ba.fill-512x512_svsF7L9.png"
+bakerydemo.lanshark.com.html:251:                            src="/media/images/Bean-jam-bunanpankatori-cityj.2e16d0ba.fill-180x140-c100_RJ0hC1S.jpg"
+www.theunconformity.com.au.html:1047:                  src="https://unco-assets.s3.amazonaws.com/media/images/_brand_assets_images_logos_zapier-logo-reversed.original_5pZXPtu.png"
+www.yourschoolgames.com.html:89:      content="https://www.yourschoolgames.comhttps://media.yourschoolgames.com/images/1.width-320_UznIELO.png"
+www.polosafaris.com.html:143:                    <li style="background: url('/media/images/A_Meeting_With_Her_Majesty.focus-none.width-945_2XROqCJ.jpeg') no-repeat center center">
+```
+
 ## Making changes to the regular expression
 
 1. Update the test suite so the known false positives and false negatives are kept in check

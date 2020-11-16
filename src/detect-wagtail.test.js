@@ -25,6 +25,9 @@ describe("detect-wagtail true positives", () => {
     ${"original local"}                           | ${"/media/images/ic-kyiv-v-33x.original.original.png"}
     ${"original bucket"}                          | ${"https://unco-assets.s3.amazonaws.com/media/images/events-tasmania.original.png"}
     ${"original media bucket subfolder"}          | ${"https://s3.us-west-2.amazonaws.com/wagtail.angelcam.com/prod/media/images/social-banner.original.png"}
+    ${"renditions suffix"}                        | ${"/media/images/beer-machine-alcohol-brewery-15929.2e16d0ba.fill-250x170_GggkweO.jpg"}
+    ${"renditions suffix 2"}                      | ${"https://showstudio-wagtail-production-2019.s3-eu-west-1.amazonaws.com/images/Image_from_iOS.width-1200_VLr2n0NkNadcQtal.png"}
+    ${"renditions original suffix"}               | ${"https://unco-assets.s3.amazonaws.com/media/images/_brand_assets_images_logos_zapier-logo-reversed.original_5pZXPtu.png"}
     ${"unicode encoded slash"}                    | ${"\u002Fmedia\u002Fimages\u002Froeland.width-200.png"}
   `("$label", ({ fragment }) => {
     expect(detectWagtail(fragment)).toBe(true);
@@ -34,8 +37,6 @@ describe("detect-wagtail true positives", () => {
 describe("detect-wagtail false negatives", () => {
   test.each`
     label                                    | fragment
-    ${"renditions suffix"}                   | ${"/media/images/beer-machine-alcohol-brewery-15929.2e16d0ba.fill-250x170_GggkweO.jpg"}
-    ${"renditions original suffix"}          | ${"https://unco-assets.s3.amazonaws.com/media/images/_brand_assets_images_logos_zapier-logo-reversed.original_5pZXPtu.png"}
     ${"original media subfolder"}            | ${"/media/public/images/de-en-251.original.jpg"}
     ${"original custom media"}               | ${"/m/images/default-event-2.original.jpg"}
     ${"original media subfolder fool"}       | ${"https://m.foolcdn.com/media/dubs/images/Growth_Chart_RB_no-title_aug17_transparent.original.png"}
@@ -47,7 +48,6 @@ describe("detect-wagtail false negatives", () => {
     ${"original folders AWS"}                | ${"https://directory-cms-public.s3.amazonaws.com/images/Lorry.original.original.jpg"}
     ${"original aldryn-media"}               | ${"https://corporatewebsite3789-live-21d50d57d68d-90ec9d9.aldryn-media.com/images/Gamma_logo_340breed.original.jpg"}
     ${"original bucket"}                     | ${"https://cdn.gloveworx.com/images/become_unstoppable.original.png"}
-    ${"original_base64"}                     | ${"https://unco-assets.s3.amazonaws.com/media/images/_brand_assets_images_logos_zapier-logo-reversed.original_5pZXPtu.png"}
     ${"renditions file names rewriting"}     | ${"https://admin.itsnicethat.com/images/0xtapWvGQQEywUqG0FJ7Ws0Fh4s=/195574/width-720%7Cformat-jpeg/sbhatt_INT_selects15.png"}
     ${"original_images"}                     | ${"https://buckup-ff-stories.s3.amazonaws.com/original_images/Lockup_Logo_-_JPEG-1.png"}
     ${"original_images media subfolder"}     | ${"https://www.rada.ac.uk/media/thumbs/original_images/website_sharing_image_1200x630_pFwpfdUaAU8l.jpg"}
@@ -64,6 +64,7 @@ describe("detect-wagtail false positives", () => {
   test.each`
     label                                       | fragment
     ${"placeholder, not a real false positive"} | ${"/media/images/placeholder.fill-960x540.jpg"}
+    ${"scale-dddd"}                             | ${"www.northcountrypublicradio.org/news/images/Icon310.scale-1400.png"}
   `("$label", ({ fragment }) => {
     expect(detectWagtail(fragment)).toBe(true);
   });
@@ -72,7 +73,6 @@ describe("detect-wagtail false positives", () => {
 describe("detect-wagtail true negatives", () => {
   test.each`
     label                                    | fragment
-    ${"scale-dddd"}                          | ${"www.northcountrypublicradio.org/news/images/Icon310.scale-1400.png"}
     ${"width-ddd webflow"}                   | ${"https://global-uploads.webflow.com/5e25051eb2b6451f92115f43/5e38e792e654da74832fe5d0_FY18-partner-favicon-Expr3ss_V2_Lj5gmrm.width-330.png"}
     ${"width-ddd wordpress"}                 | ${"https://www.coventry-homes.com/wp-content/uploads/2018/05/2_WPhCEQ8.width-1800.jpg"}
     ${"static file"}                         | ${"https://www.lacascadeinsolite.com/templates/captain/img/interface/logo.png"}
@@ -85,6 +85,7 @@ describe("detect-wagtail true negatives", () => {
     ${"original bigcommerce"}                | ${"https://cdn11.bigcommerce.com/s-6z2u3uo2sq/images/stencil/1280x1280/a/towel-storage-bathroom-howards-storage-world-australia__22966.original.jpg"}
     ${"original.original bigcommerce"}       | ${"https://cdn11.bigcommerce.com/s-p5jjd/images/stencil/250x100/resized-new-logo_1514911965__08117.original.original.png"}
     ${"original linkedin"}                   | ${"https://content.linkedin.com/content/dam/me/business/en-us/marketing-solutions/cx/2017/images/reference-cards/homepage-inmail-icon-dsk03.png.original.png"}
+    ${"original no dot"}                     | ${"https://cdn.gloveworx.com/images/become_unstoppableoriginal.png"}
     ${"original mcdonalds"}                  | ${"//www.mcdonalds.co.jp/media_library/5009/file.original.webp"}
     ${"original deep"}                       | ${"https://assets.kennislink.nl/system/files/000/251/723/medium_card/ZTF_BH_Merger_webready.original.jpg"}
     ${"original deep 2"}                     | ${"/files/styles/3x2_300w/public/2015-02/147131.original.jpg"}
