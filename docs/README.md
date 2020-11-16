@@ -64,12 +64,15 @@ computest.nl.html:484:<img data-pagespeed-lazy-src='/media/images/281x158xKlantc
 1. Update the test suite so the known false positives and false negatives are kept in check
 2. Try the new regular expressions on the Majestic Million
 
-## WIP
+## Similar Wappalyzer regular exressions
 
-/\/images\/[a-zA-Z0-9._-]+\.original\.(jpg|jpeg|png|gif|webp|avif)/
-
-original_images
-
-/ at root absolute URL
-or /media/
-No further slash
+```json
+"<[^>]+(?:https?:)?//(?:assets|downloads|images|videos)\\.(?:ct?fassets\\.net|contentful\\.com)",
+"(?:powered by <a[^>]+>Django ?([\\d.]+)?<\\/a>|<input[^>]*name=[\"']csrfmiddlewaretoken[\"'][^>]*>)\\;version:\\1",
+"(?:<div[^>]+id=\"wrapper_r\"|<(?:link|script)[^>]+(?:feed|components)/com_|<table[^>]+class=\"pill)\\;confidence:50",
+"(?:<script [^>]+\\s+<!--\\s+lang\\.no_new_posts|<a[^>]* title=\"Powered By MyBB)",
+"<link[^>]* href=[^>]+/web/css/(?:web\\.assets_common/|website\\.assets_frontend/)\\;confidence:25",
+"<\\/div>\\s*<!-- outerContainer -->\\s*<div\\s*id=\"printContainer\"><\\/div>",
+"(?:<link[^>]*/assets/store/all-[a-z\\d]{32}\\.css[^>]+>|<script>\\s*Spree\\.(?:routes|translations|api_key))",
+"(?:<div class=\"sf-toolbar[^>]+?>[^]+<span class=\"sf-toolbar-value\">([\\d.])+|<div id=\"sfwdt[^\"]+\" class=\"[^\"]*sf-toolbar)\\;version:\\1",
+```

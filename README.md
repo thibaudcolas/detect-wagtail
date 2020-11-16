@@ -5,3 +5,4 @@
 ## Useful links
 
 - [Wappalyzer](https://github.com/AliasIO/wappalyzer)
+- [detect-django-version](https://github.com/caioariede/detect-django-version)

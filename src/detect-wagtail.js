@@ -7,9 +7,10 @@ const renditions = {
   v3: /(\/images\/[a-zA-Z0-9._-]+\.(fill-\d{1,5}x\d{1,5}(-c\d{1,3})?|(max|min)-\d{1,5}x\d{1,5}|(width|height)-\d{1,5}|scale-\d{1,3})(\.format-(jpeg|png|gif|webp))?(\.(jpegquality|webpquality)-\d{1,3})?|\/media\/original_images\/[a-zA-Z0-9._-]+)\.(jpg|jpeg|png|gif|webp|avif)/,
   v4: /(\/images\/[a-zA-Z0-9._-]+\.(fill-\d{1,5}x\d{1,5}(-c\d{1,3})?|(max|min)-\d{1,5}x\d{1,5}|(width|height)-\d{1,5}|scale-\d{1,3})(\.format-(jpeg|png|gif|webp))?(\.(jpegquality|webpquality)-\d{1,3})?|\/media\/original_images\/[a-zA-Z0-9._-]+|\/media\/images\/[a-zA-Z0-9._-]+\.original)\.(jpg|jpeg|png|gif|webp|avif|JPG|JPEG|PNG|GIF|WEBP|AVIF)/,
   v5: /(\/images\/[a-zA-Z0-9._-]+\.((fill|max|min)-\d+x\d+(-c\d{1,3})?|(width|height)-\d+|scale-\d{1,3})(\.format-(jpeg|png|webp))?(\.(jpeg|webp)quality-\d{1,3})?|\/media\/original_images\/[a-zA-Z0-9._-]+|\/media\/images\/[a-zA-Z0-9._-]+\.original)\./,
-  conservative: /(\/images\/[a-zA-Z0-9._-]+\.((fill|max|min)-\d+x\d+(-c\d{1,3})?|(width|height)-\d+|scale-\d{1,3})|\/media\/original_images\/[a-zA-Z0-9._-]+|\/media\/images\/[a-zA-Z0-9._-]+\.original)\./,
-  conservative_ish: /(\/images\/[a-zA-Z0-9._-]+\.((fill|max|min)-\d+x\d+(-c\d{1,3})?|(width|height)-\d+|scale-\d{1,3})|\/media\/original_images\/[a-zA-Z0-9._-]+|\/media(\/[a-zA-Z0-9_-]+)?\/images\/[a-zA-Z0-9._-]+\.original)\./,
-  conservative_ish2: /(\/images\/[a-zA-Z0-9._-]+\.((fill|max|min)-\d+x\d+(-c\d{1,3})?|(width|height)-\d+|scale-\d{1,3})|\/media(\/[a-zA-Z0-9_-]+)?\/original_images\/[a-zA-Z0-9._-]+|\/media(\/[a-zA-Z0-9_-]+)?\/images\/[a-zA-Z0-9._-]+\.original)\./,
+  conservative: /(\/images\/[a-zA-Z0-9._-]+\.((fill|max|min)-\d+x\d+(-c\d+)?|(width|height)-\d+|scale-\d{1,3})\.|\/media\/images\/[a-zA-Z0-9._-]+\.original\.|\/media\/original_images\/)/,
+  conservative_ish: /(\/images\/[a-zA-Z0-9._-]+\.((fill|max|min)-\d+x\d+(-c\d+)?|(width|height)-\d+|scale-\d{1,3})\.|\/media(\/[a-zA-Z0-9_-]+)?\/images\/[a-zA-Z0-9._-]+\.original\.|\/media\/original_images\/)/,
+  conservative_ish2: /(\/images\/[a-zA-Z0-9._-]+\.((fill|max|min)-\d+x\d+(-c\d+)?|(width|height)-\d+|scale-\d{1,3})\.|\/media(\/[a-zA-Z0-9_-]+)?\/images\/[a-zA-Z0-9._-]+\.original\.|\/media(\/[a-zA-Z0-9_-]+)?\/original_images\/)/,
+  lax: /(\/images\/[a-zA-Z0-9._-]+\.((fill|max|min)-\d+x\d+(-c\d+)?|(width|height)-\d+|scale-\d{1,3}|original)\.|\/original_images\/)/,
 };
 
 /**
