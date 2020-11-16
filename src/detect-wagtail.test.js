@@ -39,7 +39,6 @@ describe("detect-wagtail true positives", () => {
     ${"original_images"}                          | ${"https://buckup-ff-stories.s3.amazonaws.com/original_images/Lockup_Logo_-_JPEG-1.png"}
     ${"original_images media subfolder"}          | ${"https://www.rada.ac.uk/media/thumbs/original_images/website_sharing_image_1200x630_pFwpfdUaAU8l.jpg"}
     ${"original_images media subfolder AWS"}      | ${"https://bos-prd.s3.amazonaws.com/media/dd/original_images/46e7d749c2374c0416422da73c83a421.jpg"}
-    ${"original_images imgix wagtail"}            | ${"https://su.imgix.net/original_images/dd0fb02e668c4c63bc46522963a28afa"}
     ${"original_images imgix wagtail 2"}          | ${"https://bsi-corporate-cms.imgix.net/original_images/basler-logo_GXqNgD7.png"}
   `("$label", ({ fragment }) => {
     expect(detectWagtail(fragment)).toBe(true);
@@ -62,12 +61,9 @@ describe("detect-wagtail false negatives", () => {
 
 describe("detect-wagtail false positives", () => {
   test.each`
-    label                                       | fragment
-    ${"placeholder, not a real false positive"} | ${"/media/images/placeholder.fill-960x540.jpg"}
-    ${"scale-dddd"}                             | ${"www.northcountrypublicradio.org/news/images/Icon310.scale-1400.png"}
-    ${"original_images on another PHP site"}    | ${"https://images.fivefourclub.com/images.fivefourclub.com/images/original_images/o_category-tiles-shirts-v2-5ea23b242e9a8.jpg"}
-    ${"original_images pixtruder"}              | ${"//s3.amazonaws.com/pixtruder/original_images/bazaar/home.search.bg.jpg"}
-    ${"original_images oc.hu"}                  | ${"https://i2.oc.hu/original_images/0x0/auto/bg_hr8joosu.jpg?v=1&hash=6af3b6bed268c677f1e7f57d6d7260b5"}
+    label                                    | fragment
+    ${"scale-dddd"}                          | ${"www.northcountrypublicradio.org/news/images/Icon310.scale-1400.png"}
+    ${"original_images on another PHP site"} | ${"https://images.fivefourclub.com/images.fivefourclub.com/images/original_images/o_category-tiles-shirts-v2-5ea23b242e9a8.jpg"}
   `("$label", ({ fragment }) => {
     expect(detectWagtail(fragment)).toBe(true);
   });
@@ -99,6 +95,9 @@ describe("detect-wagtail true negatives", () => {
     ${"original jpeg"}                     | ${"/uploads/inspiration/5dc933480b09d98942159a522233dc3b647b501f.original.jpeg"}
     ${"original wordpress"}                | ${"https://opencanada.org/wp-content/themes/opencanada/assets/opencanada/images/86360915-0de18100-bc41-11ea-8ca5-c8209953bde1.original.png"}
     ${"original uploaded to WordPress"}    | ${"https://parrotbreeders.org/wp-content/uploads/2020/05/home-pasta-2x-2.original.png"}
+    ${"original_images pixtruder"}         | ${"//s3.amazonaws.com/pixtruder/original_images/bazaar/home.search.bg.jpg"}
+    ${"original_images imgix hash"}        | ${"https://su.imgix.net/original_images/dd0fb02e668c4c63bc46522963a28afa"}
+    ${"original_images oc.hu"}             | ${"https://i2.oc.hu/original_images/0x0/auto/bg_hr8joosu.jpg?v=1&hash=6af3b6bed268c677f1e7f57d6d7260b5"}
     ${"original_images on PHP site"}       | ${"/Galerie/ulicy_ploschadi/index_files/original_images/p0000002.jpg"}
     ${"original_images on asiaone"}        | ${"https://media.asiaone.com/sites/default/files/styles/revamptallcard/public/original_images/Nov2020/20201112_celeb_reuters.jpg?h=b69bd7d9&itok=z9ydcrN6"}
     ${"original_images monde diplo"}       | ${"https://monde-diplomatique.de/images/product_images/original_images/243891_0.jpg"}

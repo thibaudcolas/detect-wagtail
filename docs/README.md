@@ -98,10 +98,9 @@ mca.com.au.html:77: <script>var windowApiData = {"src": "/files/images/Pipilotti
 Based on Majestic Million dataset:
 
 - 296 strictest
-- 466 strict
-- 474 pragmatic
-- 505 less_strict_but_long
-- 522 lax
+- 463 strict
+- 502 less_strict_but_long
+- 515 lax
 
 Compare results:
 

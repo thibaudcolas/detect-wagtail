@@ -9,12 +9,12 @@ const renditions = {
   v5: /(\/images\/[a-zA-Z0-9._-]+\.((fill|max|min)-\d+x\d+(-c\d{1,3})?|(width|height)-\d+|scale-\d{1,3})(\.format-(jpeg|png|webp))?(\.(jpeg|webp)quality-\d{1,3})?|\/media\/original_images\/[a-zA-Z0-9._-]+|\/media\/images\/[a-zA-Z0-9._-]+\.original)\./,
   v6: /(\/images\/[a-zA-Z0-9._-]+\.((fill|max|min)-\d+x\d|(width|height|scale)-\d)|\/media\/images\/[a-zA-Z0-9._-]+\.original|\/media\/original_images\/)/,
   // Optimized for real-world relevance, with as few false positives as possible, but still some.
-  strict: /([a-zA-Z0-9_.-]+\.[a-z]+|\/media)(\/[a-zA-Z0-9_-]+)?\/(original_images\/|images\/[a-zA-Z0-9._-]+\.((fill|max|min)-\d+x\d|(width|height|scale)-\d|original))/,
-  less_strict_but_long: /(\/images\/[a-zA-Z0-9._-]+\.((fill|max|min)-\d+x\d|(width|height|scale)-\d)|([a-zA-Z0-9_.-]+\.[a-z]+|\/media)(\/[a-zA-Z0-9_-]+)?\/(images\/[a-zA-Z0-9._-]+\.original|original_images\/))/,
+  strict: /([a-zA-Z0-9_.-]+\.[a-z]+|\/media)(\/[a-zA-Z0-9_-]+)?\/(original_images\/[a-zA-Z0-9_-]+\.|images\/[a-zA-Z0-9._-]+\.((fill|max|min)-\d+x\d|(width|height|scale)-\d|original))/,
+  less_strict_but_long: /(([a-zA-Z0-9_.-]+\.[a-z]+|\/media)(\/[a-zA-Z0-9_-]+)?\/(images\/[a-zA-Z0-9._-]+\.original|original_images\/[a-zA-Z0-9_-]+\.)|\/images\/[a-zA-Z0-9._-]+\.((fill|max|min)-\d+x\d|(width|height|scale)-\d))/,
   // Very specific matching. No avoidable false positives.
-  strictest: /\/media\/(original_images\/|images\/[a-zA-Z0-9._-]+\.((fill|max|min)-\d+x\d+(-c\d+)?|(width|height)-\d+|scale-\d{1,3}|original)\.)/,
+  strictest: /\/media\/(original_images\/[a-zA-Z0-9_-]+\.|images\/[a-zA-Z0-9._-]+\.((fill|max|min)-\d+x\d+(-c\d+)?|(width|height)-\d+|scale-\d{1,3}|original)\.)/,
   // Lax matching, with widespread false positives.
-  lax: /\/(original_images\/|images\/[a-zA-Z0-9._-]+\.((fill|max|min)-\d+x\d|(width|height|scale)-\d|original))/,
+  lax: /\/(original_images\/[a-zA-Z0-9_-]+\.|images\/[a-zA-Z0-9._-]+\.((fill|max|min)-\d+x\d|(width|height|scale)-\d|original))/,
 };
 
 /**
