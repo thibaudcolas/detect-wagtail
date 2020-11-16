@@ -9,12 +9,12 @@ const renditions = {
   v5: /(\/images\/[a-zA-Z0-9._-]+\.((fill|max|min)-\d+x\d+(-c\d{1,3})?|(width|height)-\d+|scale-\d{1,3})(\.format-(jpeg|png|webp))?(\.(jpeg|webp)quality-\d{1,3})?|\/media\/original_images\/[a-zA-Z0-9._-]+|\/media\/images\/[a-zA-Z0-9._-]+\.original)\./,
   // Optimized for real-world relrevance, with as few false positives as possible, but still some.
   pragmatic: /(\/images\/[a-zA-Z0-9._-]+\.((fill|max|min)-\d+x\d|(width|height|scale)-\d)|\/media\/images\/[a-zA-Z0-9._-]+\.original|\/media\/original_images\/)/,
-  conserv_ish1: /(\/images\/[a-zA-Z0-9._-]+\.((fill|max|min)-\d+x\d+(-c\d+)?|(width|height)-\d+|scale-\d{1,3})\.|\/media(\/[a-zA-Z0-9_-]+)?\/images\/[a-zA-Z0-9._-]+\.original\.|\/media\/original_images\/)/,
-  conserv_ish2: /(\/images\/[a-zA-Z0-9._-]+\.((fill|max|min)-\d+x\d+(-c\d+)?|(width|height)-\d+|scale-\d{1,3})\.|\/media(\/[a-zA-Z0-9_-]+)?\/images\/[a-zA-Z0-9._-]+\.original\.|\/media(\/[a-zA-Z0-9_-]+)?\/original_images\/)/,
+  strict: /([a-zA-Z0-9_.-]+\.[a-z]+|\/media)(\/[a-zA-Z0-9_-]+)?\/(original_images\/|images\/[a-zA-Z0-9._-]+\.((fill|max|min)-\d+x\d|(width|height|scale)-\d))/,
+  less_strict_but_long: /(\/images\/[a-zA-Z0-9._-]+\.((fill|max|min)-\d+x\d|(width|height|scale)-\d)|([a-zA-Z0-9_.-]+\.[a-z]+|\/media)(\/[a-zA-Z0-9_-]+)?\/(images\/[a-zA-Z0-9._-]+\.original|original_images\/))/,
   // Very specific matching. No avoidable false positives.
-  strict: /(\/images\/[a-zA-Z0-9._-]+\.((fill|max|min)-\d+x\d+(-c\d+)?|(width|height)-\d+|scale-\d{1,3})\.|\/media\/images\/[a-zA-Z0-9._-]+\.original\.|\/media\/original_images\/)/,
+  strictest: /\/media\/(original_images\/|images\/[a-zA-Z0-9._-]+\.((fill|max|min)-\d+x\d+(-c\d+)?|(width|height)-\d+|scale-\d{1,3}|original)\.)/,
   // Lax matching, with widespread false positives.
-  lax: /(\/images\/[a-zA-Z0-9._-]+\.((fill|max|min)-\d+x\d|(width|height|scale)-\d|original)|\/original_images\/)/,
+  lax: /\/(original_images\/|images\/[a-zA-Z0-9._-]+\.((fill|max|min)-\d+x\d|(width|height|scale)-\d|original))/,
 };
 
 /**

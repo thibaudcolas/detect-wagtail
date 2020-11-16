@@ -71,6 +71,8 @@ bakerydemo.lanshark.com.html:251:                            src="/media/images/
 www.theunconformity.com.au.html:1047:                  src="https://unco-assets.s3.amazonaws.com/media/images/_brand_assets_images_logos_zapier-logo-reversed.original_5pZXPtu.png"
 www.yourschoolgames.com.html:89:      content="https://www.yourschoolgames.comhttps://media.yourschoolgames.com/images/1.width-320_UznIELO.png"
 www.polosafaris.com.html:143:                    <li style="background: url('/media/images/A_Meeting_With_Her_Majesty.focus-none.width-945_2XROqCJ.jpeg') no-repeat center center">
+bm.com.html:20: video poster="https://bcwglobal.blob.core.windows.net/prd/images/bcw-moving-people-hero-min.original.max-2000x2000.jpg"
+mca.com.au.html:77: <script>var windowApiData = {"src": "/files/images/PipilottiRist_MCA_credit_Ken_L.width-1200.jpegquality-70_RHlv18i.jpg",
 ```
 
 ## Making changes to the regular expression
