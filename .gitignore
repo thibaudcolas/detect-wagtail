@@ -92,6 +92,7 @@ lib64
 # Your own project's ignores
 # -------------------------------------------------
 data
+sites
 
 # Local Netlify folder
 .netlify

@@ -10,8 +10,8 @@ You can run the detection with:
 
 - The online website, [detect-wagtail.netlify.app](https://detect-wagtail.netlify.app/).
 - A bookmarket, also available from [detect-wagtail.netlify.app](https://detect-wagtail.netlify.app/).
-- With a browser extension thanks to [Wappalyzer](https://github.com/AliasIO/wappalyzer).
-- With a Node CLI, also thanks to [Wappalyzer](https://github.com/AliasIO/wappalyzer).
+- A browser extension thanks to [Wappalyzer](https://github.com/AliasIO/wappalyzer).
+- A Node CLI, also thanks to [Wappalyzer](https://github.com/AliasIO/wappalyzer).
 - As an npm package for more custom needs, [detect-wagtail](https://www.npmjs.com/package/detect-wagtail)
 
 ## How it works
@@ -19,6 +19,8 @@ You can run the detection with:
 This uses regular expressions to check whether images on the page match a predetermined pattern. Here is a simplified diagram of the logic (created with [regexper](https://regexper.com/#%5C%2F%28original_images%5C%2F%5B%5Cw-%5D%2B%5C.%7Cimages%5C%2F%5B%5Cw-.%5D%2B%5C.%28%28fill%7Cmax%7Cmin%7Cwidth%7Cheight%7Cscale%29-%5Cd%7Coriginal%29%29)):
 
 [![](https://raw.githubusercontent.com/thibaudcolas/detect-wagtail/main/.github/regexper-diagram.svg?sanitize=true)](https://regexper.com/#%5C%2F%28original_images%5C%2F%5B%5Cw-%5D%2B%5C.%7Cimages%5C%2F%5B%5Cw-.%5D%2B%5C.%28%28fill%7Cmax%7Cmin%7Cwidth%7Cheight%7Cscale%29-%5Cd%7Coriginal%29%29)
+
+There can be [false positives](https://en.wikipedia.org/wiki/Precision_and_recall) with such a simple check, but it has the benefit of working regardless of whether the target site is directly served by Wagtail, or if Wagtail is used as a headless CMS.
 
 ## Related links
 
