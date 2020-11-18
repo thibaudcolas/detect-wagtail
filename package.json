@@ -1,7 +1,10 @@
 {
   "name": "detect-wagtail",
   "version": "0.1.0",
-  "private": true,
+  "main": "./src/detect-wagtail.js",
+  "files": [
+    "src/detect-wagtail.js"
+  ],
   "description": "Detect whether a site or page is built with Wagtail",
   "author": "Thibaud Colas",
   "license": "MIT",
@@ -19,8 +22,8 @@
     "wagtail"
   ],
   "devDependencies": {
-    "eslint": "^7.13.0",
-    "jest": "^26.6.3",
+    "eslint": "7.13.0",
+    "jest": "26.6.3",
     "prettier": "2.1.2"
   },
   "scripts": {
@@ -28,6 +31,7 @@
     "lint": "eslint --report-unused-disable-directives . && prettier --check '**/?(.)*.{md,css,scss,js,json,json5,yaml,yml,html}'",
     "format": "prettier --write '**/?(.)*.{md,css,scss,js,json,json5,yaml,yml,html}'",
     "test": "jest",
-    "test:watch": "jest --watch"
+    "test:watch": "jest --watch",
+    "report:package": " npm pack --loglevel notice 2>&1 >/dev/null | sed -e 's/^npm notice //' && rm *.tgz"
   }
 }
