@@ -26,6 +26,7 @@ There can be [false positives](https://en.wikipedia.org/wiki/Precision_and_recal
 
 ## Related links
 
+- [Detecting Wagtail in the wild](https://thib.me/detecting-wagtail-in-the-wild)
 - [Wappalyzer](https://github.com/AliasIO/wappalyzer)
 - [WhatCMS.org](https://whatcms.org/c/Wagtail)
 - [detect-django-version](https://github.com/caioariede/detect-django-version)
