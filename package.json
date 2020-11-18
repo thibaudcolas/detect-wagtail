@@ -2,7 +2,7 @@
   "name": "detect-wagtail",
   "version": "0.1.0",
   "private": true,
-  "description": "Detect whether a page or site is built with Wagtail",
+  "description": "Detect whether a site or page is built with Wagtail",
   "author": "Thibaud Colas",
   "license": "MIT",
   "homepage": "https://github.com/thibaudcolas/detect-wagtail",

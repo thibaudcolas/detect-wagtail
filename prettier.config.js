@@ -10,4 +10,5 @@ module.exports = {
   jsxBracketSameLine: false,
   arrowParens: "always",
   proseWrap: "preserve",
+  htmlWhitespaceSensitivity: "css",
 };
