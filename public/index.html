@@ -14,6 +14,11 @@
       name="description"
       content="Is a site built with Wagtail? Let’s check"
     />
+    <meta property="og:title" content="Detect Wagtail" />
+    <meta
+      property="og:description"
+      content="Is a site built with Wagtail? Let’s check"
+    />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://detect-wagtail.netlify.app/" />
     <meta
@@ -154,14 +159,17 @@
         >Wagtail?</a
       >
 
-      Alternatively, you can also use
-      <a href="https://github.com/AliasIO/wappalyzer">Wappalyzer</a> or
-      <a href="https://whatcms.org/c/Wagtail">WhatCMS.org</a>
+      <p>
+        Alternatively, you can also use
+        <a href="https://github.com/AliasIO/wappalyzer">Wappalyzer</a> or
+        <a href="https://whatcms.org/c/Wagtail">WhatCMS.org</a>.
+      </p>
 
       <h2 id="how-it-works">How it works</h2>
       <p>
-        Here is a simplified diagram of how the check analyzes images (built
-        with
+        This uses regular expressions to check whether images on the page match
+        a predetermined pattern. Here is a simplified diagram of the logic
+        (created with
         <a
           href="https://regexper.com/#%5C%2F%28original_images%5C%2F%5B%5Cw-%5D%2B%5C.%7Cimages%5C%2F%5B%5Cw-.%5D%2B%5C.%28%28fill%7Cmax%7Cmin%7Cwidth%7Cheight%7Cscale%29-%5Cd%7Coriginal%29%29"
           >regexper</a
@@ -176,7 +184,8 @@
         >
         with such a simple check, but it has the benefit of working regardless
         of whether the target site is directly served by Wagtail, or if Wagtail
-        is used as a headless CMS.
+        is used as a headless CMS. For further info, view the implementation
+        <a href="https://github.com/thibaudcolas/detect-wagtail">on GitHub</a>.
       </p>
     </main>
     <footer>
@@ -187,40 +196,40 @@
           Edit on GitHub</a
         >.
       </p>
-      <script>
-        const init = () => {
-          const form = document.querySelector("form");
-          const url = form.querySelector('[name="url"]');
-          const results = document.querySelector(".results");
-          const status = results.querySelector('[role="alert"]');
-
-          form.addEventListener("submit", (e) => {
-            e.preventDefault();
-
-            let timeout = setTimeout(() => {
-              status.innerHTML = status.dataset.loading;
-            }, 300);
-
-            window
-              .fetch(
-                `/.netlify/functions/detect?url=${window.encodeURIComponent(
-                  url.value,
-                )}`,
-              )
-              .then((res) => res.json())
-              .then((res) => {
-                clearTimeout(timeout);
-
-                status.innerHTML = document.querySelector(
-                  `[data-code="${res.code}"]`,
-                ).innerHTML;
-              });
-          });
-        };
-
-        init();
-      </script>
     </footer>
+    <script>
+      const init = () => {
+        const form = document.querySelector("form");
+        const url = form.querySelector('[name="url"]');
+        const results = document.querySelector(".results");
+        const status = results.querySelector('[role="alert"]');
+
+        form.addEventListener("submit", (e) => {
+          e.preventDefault();
+
+          let timeout = setTimeout(() => {
+            status.innerHTML = status.dataset.loading;
+          }, 300);
+
+          window
+            .fetch(
+              `/.netlify/functions/detect?url=${window.encodeURIComponent(
+                url.value,
+              )}`,
+            )
+            .then((res) => res.json())
+            .then((res) => {
+              clearTimeout(timeout);
+
+              status.innerHTML = document.querySelector(
+                `[data-code="${res.code}"]`,
+              ).innerHTML;
+            });
+        });
+      };
+
+      init();
+    </script>
     <svg
       height="128"
       viewBox="0 0 128 128"
