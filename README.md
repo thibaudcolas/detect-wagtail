@@ -16,7 +16,9 @@ You can run the detection with:
 
 ## How it works
 
-This uses regular expressions to check whether images on the page match a predetermined pattern. Here is a simplified diagram of the logic (created with [regexper](https://regexper.com/#%5C%2F%28original_images%5C%2F%5B%5Cw-%5D%2B%5C.%7Cimages%5C%2F%5B%5Cw-.%5D%2B%5C.%28%28fill%7Cmax%7Cmin%7Cwidth%7Cheight%7Cscale%29-%5Cd%7Coriginal%29%29)):
+Full read: [Detecting Wagtail in the wild](https://thib.me/detecting-wagtail-in-the-wild).
+
+This uses regular expressions to check whether images on the page match a predetermined pattern:
 
 [![](https://raw.githubusercontent.com/thibaudcolas/detect-wagtail/main/.github/regexper-diagram.svg?sanitize=true)](https://regexper.com/#%5C%2F%28original_images%5C%2F%5B%5Cw-%5D%2B%5C.%7Cimages%5C%2F%5B%5Cw-.%5D%2B%5C.%28%28fill%7Cmax%7Cmin%7Cwidth%7Cheight%7Cscale%29-%5Cd%7Coriginal%29%29)
 
