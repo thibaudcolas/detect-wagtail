@@ -41,7 +41,7 @@ webpquality-50
 
 ## Limitations
 
-Sites which are built with another backend, but use a Wagtail site to serve images.
+Sites which are built with another backend, but use a Wagtail site to serve images. Is this a bug or a feature?
 
 ```txt
 chukou1.com.html:1052:<a href="https://www.chukou1.com/HotPlatfroms/HotPlatfroms.aspx?pageName=Teezily" target="_blank"> <img alt="Teezily" src="https://pic.chukou1.com/media/images/LOGO_1.original.original.jpg" style="width: 157px;" /></a></li>
