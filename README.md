@@ -9,7 +9,7 @@
 You can run the detection with:
 
 - The online website, [detect-wagtail.netlify.app](https://detect-wagtail.netlify.app/).
-- A bookmarket, also available from [detect-wagtail.netlify.app](https://detect-wagtail.netlify.app/).
+- A bookmarklet, also available from [detect-wagtail.netlify.app](https://detect-wagtail.netlify.app/).
 - A browser extension thanks to [Wappalyzer](https://github.com/AliasIO/wappalyzer).
 - A Node CLI, also thanks to [Wappalyzer](https://github.com/AliasIO/wappalyzer).
 - As an npm package for more custom needs, [detect-wagtail](https://www.npmjs.com/package/detect-wagtail)
