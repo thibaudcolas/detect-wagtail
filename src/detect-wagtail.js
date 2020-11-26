@@ -10,6 +10,8 @@ const renditions = {
   strictest: /\/media\/(original_images\/[\w-]+\.|images\/[\w-.]+\.((fill|max|min)-\d+x\d+(-c\d+)?|(width|height|scale)-\d+|original)\.)/,
   // Lax matching, with widespread false positives.
   lax: /\/(original_images\/[\w-]+\.|images\/[\w-.]+\.((fill|max|min|width|height|scale)-\d|original))/,
+  // Very lax matching based on rendition suffixes or original_images folder only.
+  laxest: /(\/original_images\/|\/[\w-.]+\.((fill|max|min|width|height|scale)-\d|original))/,
 };
 
 /**

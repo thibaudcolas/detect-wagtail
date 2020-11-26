@@ -47,13 +47,14 @@ describe("detect-wagtail true positives", () => {
 
 describe("detect-wagtail false negatives", () => {
   test.each`
-    label                                 | fragment
-    ${"height-hh catalyst cloud"}         | ${"https://object-storage.nz-por-1.catalystcloud.io:443/v1/AUTH_52213f2d28354f499d85ec4722164456/catalystcloudnz_django_storage_prod/images/PaySaucered.original.height-180.jpg"}
-    ${"original custom media"}            | ${"/m/images/default-event-2.original.jpg"}
-    ${"original folders FEC"}             | ${"https://www.fec.gov/resources/cms-content/images/headshot--walther.original.png"}
-    ${"original folders directbuy"}       | ${"/wm/images/shop-icon-db.original.png"}
-    ${"renditions file names rewriting"}  | ${"https://admin.itsnicethat.com/images/0xtapWvGQQEywUqG0FJ7Ws0Fh4s=/195574/width-720%7Cformat-jpeg/sbhatt_INT_selects15.png"}
-    ${"original_images imagekit wagtail"} | ${"https://ik.imagekit.io/theartling/p/original_images/AB_JP_2020_Bulloch_Pryde_Sky_Rocks__Digits_Simon_Lee_Gallery_HK_Installa_9EJ8Q4a.jpg?tr=,w-700,h-376"}
+    label                                  | fragment
+    ${"height-hh catalyst cloud"}          | ${"https://object-storage.nz-por-1.catalystcloud.io:443/v1/AUTH_52213f2d28354f499d85ec4722164456/catalystcloudnz_django_storage_prod/images/PaySaucered.original.height-180.jpg"}
+    ${"original custom media"}             | ${"/m/images/default-event-2.original.jpg"}
+    ${"original folders FEC"}              | ${"https://www.fec.gov/resources/cms-content/images/headshot--walther.original.png"}
+    ${"original folders directbuy"}        | ${"/wm/images/shop-icon-db.original.png"}
+    ${"renditions file names rewriting"}   | ${"https://admin.itsnicethat.com/images/0xtapWvGQQEywUqG0FJ7Ws0Fh4s=/195574/width-720%7Cformat-jpeg/sbhatt_INT_selects15.png"}
+    ${"original_images imagekit wagtail"}  | ${"https://ik.imagekit.io/theartling/p/original_images/AB_JP_2020_Bulloch_Pryde_Sky_Rocks__Digits_Simon_Lee_Gallery_HK_Installa_9EJ8Q4a.jpg?tr=,w-700,h-376"}
+    ${"images with sub-folders hierarchy"} | ${"https://s3.nat-geo.ru/images/2020/11/11/1eca5f9e764441fab3cc58cbbdd6c3de.2e16d0ba.fill-91x132.jpg"}
   `("$label", ({ fragment }) => {
     expect(detectWagtail(fragment)).toBe(false);
   });

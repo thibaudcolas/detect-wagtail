@@ -6,6 +6,8 @@
     strictest: /\/media\/(original_images\/[\w-]+\.|images\/[\w-.]+\.((fill|max|min)-\d+x\d+(-c\d+)?|(width|height|scale)-\d+|original)\.)/,
     // Lax matching, with widespread false positives.
     lax: /\/(original_images\/[\w-]+\.|images\/[\w-.]+\.((fill|max|min|width|height|scale)-\d|original))/,
+    // Very lax matching based on rendition suffixes or original_images folder only.
+    laxest: /(\/original_images\/|\/[\w-.]+\.((fill|max|min|width|height|scale)-\d|original))/,
   };
   const html = document.documentElement.outerHTML;
 
@@ -25,12 +27,19 @@
 
   if (renditions.lax.test(html)) {
     window.alert(
-      "That’s likely a Wagtail site. Or with another technology which handles images very similarly to Wagtail.",
+      "Yes, that’s likely a Wagtail site. Or this site is built with another technology which handles images very similarly to Wagtail.",
+    );
+    return;
+  }
+
+  if (renditions.laxest.test(html)) {
+    window.alert(
+      "Yes, that could be a Wagtail site. Or this site is built with another technology which handles images very similarly to Wagtail.",
     );
     return;
   }
 
   window.alert(
-    "It doesn’t seem to be a Wagtail site. We can’t really tell for sure, but we couldn’t detect any user-uploaded images generated with Wagtail on this page.",
+    "No, it doesn’t seem to be a Wagtail site. We can’t really tell for sure, but we couldn’t detect any user-uploaded images generated with Wagtail on this page.",
   );
 })();
