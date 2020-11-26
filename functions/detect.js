@@ -55,6 +55,9 @@ exports.handler = async function detectWagtail({ queryStringParameters }) {
 
     return {
       statusCode: 200,
+      headers: {
+        "cache-control": `public, max-age=${60 * 60 * 24}`,
+      },
       body: JSON.stringify(
         {
           target: url,
