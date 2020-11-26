@@ -31,3 +31,15 @@ There can be [false positives](https://en.wikipedia.org/wiki/Precision_and_recal
 - [WhatCMS.org](https://whatcms.org/c/Wagtail)
 - [detect-django-version](https://github.com/caioariede/detect-django-version)
 - [Use consistent heuristics to tell if a site is made with Wagtail](https://github.com/springload/madewithwagtail/issues/62)
+
+## Contributing
+
+```sh
+git clone git@github.com:thibaudcolas/detect-wagtail.git
+cd detect-wagtail
+nvm use
+npm install
+npm run test
+npm install netlify-cli -g
+netlify dev
+```
