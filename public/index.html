@@ -208,45 +208,13 @@
         >.
       </p>
     </footer>
-    <script>
-      const init = () => {
-        const form = document.querySelector("form");
-        const url = form.querySelector('[name="url"]');
-        const results = document.querySelector(".results");
-        const status = results.querySelector('[role="alert"]');
-
-        form.addEventListener("submit", (e) => {
-          e.preventDefault();
-
-          let timeout = setTimeout(() => {
-            status.innerHTML = status.dataset.loading;
-          }, 300);
-
-          window
-            .fetch(
-              `/.netlify/functions/detect?url=${window.encodeURIComponent(
-                url.value,
-              )}`,
-            )
-            .then((res) => res.json())
-            .then((res) => {
-              clearTimeout(timeout);
-
-              status.innerHTML = document.querySelector(
-                `[data-code="${res.code}"]`,
-              ).innerHTML;
-            });
-        });
-      };
-
-      init();
-    </script>
     <svg
       height="128"
       viewBox="0 0 128 128"
       width="128"
       aria-hidden="true"
       focusable="false"
+      data-wagtail-tail
       style="position: absolute; top: 0; right: 0"
     >
       <path
@@ -261,5 +229,66 @@
         "
       />
     </svg>
+    <script>
+      const init = () => {
+        const form = document.querySelector("form");
+        const url = form.querySelector('[name="url"]');
+        const results = document.querySelector(".results");
+        const status = results.querySelector('[role="alert"]');
+
+        form.addEventListener("submit", (e) => {
+          e.preventDefault();
+
+          let timeout = setTimeout(() => {
+            status.innerHTML = status.dataset.loading;
+          }, 300);
+
+          const target = window.encodeURIComponent(url.value);
+
+          const pageURL = new URL(window.location);
+          pageURL.searchParams.set("url", target);
+          window.history.pushState({}, "", pageURL);
+
+          window
+            .fetch(`/.netlify/functions/detect?url=${target}`)
+            .then((res) => res.json())
+            .then((res) => {
+              clearTimeout(timeout);
+
+              status.innerHTML = document.querySelector(
+                `[data-code="${res.code}"]`,
+              ).innerHTML;
+            });
+        });
+
+        const urlParams = new URLSearchParams(window.location.search);
+        const urlParam = urlParams.get("url");
+
+        if (urlParam) {
+          try {
+            new URL(window.decodeURIComponent(urlParam));
+          } catch (e) {
+            console.error(e);
+            status.innerHTML = document.querySelector(
+              `[data-code="error"]`,
+            ).innerHTML;
+            return;
+          }
+          url.value = window.decodeURIComponent(urlParam);
+          const target = window.encodeURIComponent(url.value);
+
+          window
+            .fetch(`/.netlify/functions/detect?url=${target}`)
+            .then((res) => res.json())
+            .then((res) => {
+              status.innerHTML = document.querySelector(
+                `[data-code="${res.code}"]`,
+              ).innerHTML;
+            });
+        }
+      };
+
+      init();
+    </script>
   </body>
 </html>
