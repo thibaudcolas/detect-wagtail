@@ -14,6 +14,8 @@ const renditions = {
   laxest: /(\/original_images\/|\/[\w-.]+\.((fill|max|min|width|height|scale)-\d|original))/,
 };
 
+var test = 5
+
 /**
  * Detects whether a given HTML string contains Wagtail image renditions.
  * @param {string}  html - HTML string to check for Wagtail telltales.
