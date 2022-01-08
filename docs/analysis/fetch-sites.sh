@@ -7,5 +7,5 @@ do
   file="${file/http\:\/\//}"
   file="${file/https\:\/\//}"
   file="${file/\//}"
-  curl -sL --max-time 5 --connect-timeout 2 --speed-time 15 --speed-limit 1000 "$line" > "$2/$file.html"
+  curl -sL --max-time 15 --connect-timeout 5 --speed-time 15 --speed-limit 1000 "$line" > "$2/$file.html"
 done < "./$1"

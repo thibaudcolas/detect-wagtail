@@ -3,7 +3,8 @@
 # Fail on first line that fails.
 set -e
 
-for i in {1..49}
+# TODO Update the range before running!
+for i in {1..54}
 do
    curl "https://madewithwagtail.org/?page=$i" | grep project__visit >> wagtail-sites.txt
 done
