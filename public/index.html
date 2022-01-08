@@ -269,9 +269,8 @@
             new URL(window.decodeURIComponent(urlParam));
           } catch (e) {
             console.error(e);
-            status.innerHTML = document.querySelector(
-              `[data-code="error"]`,
-            ).innerHTML;
+            status.innerHTML =
+              document.querySelector(`[data-code="error"]`).innerHTML;
             return;
           }
           url.value = window.decodeURIComponent(urlParam);
