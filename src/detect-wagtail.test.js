@@ -55,6 +55,7 @@ describe("detect-wagtail false negatives", () => {
     ${"renditions file names rewriting"}   | ${"https://admin.itsnicethat.com/images/0xtapWvGQQEywUqG0FJ7Ws0Fh4s=/195574/width-720%7Cformat-jpeg/sbhatt_INT_selects15.png"}
     ${"original_images imagekit wagtail"}  | ${"https://ik.imagekit.io/theartling/p/original_images/AB_JP_2020_Bulloch_Pryde_Sky_Rocks__Digits_Simon_Lee_Gallery_HK_Installa_9EJ8Q4a.jpg?tr=,w-700,h-376"}
     ${"images with sub-folders hierarchy"} | ${"https://s3.nat-geo.ru/images/2020/11/11/1eca5f9e764441fab3cc58cbbdd6c3de.2e16d0ba.fill-91x132.jpg"}
+    ${"AWS with :443 port number"}         | ${"https://s3.eu-west-2.amazonaws.com:443/ambition-institute/images/Helping_educators_serving_children_from_dis.min-1120x600.png"}
   `("$label", ({ fragment }) => {
     expect(detectWagtail(fragment)).toBe(false);
   });
