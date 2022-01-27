@@ -5,17 +5,17 @@
 const renditions = {
   // Optimized for real-world relevance, with as few false positives as possible, but still some.
   strict:
-    /(\.[a-z]+|\/media)(\/[\w-]+)?\/(original_images\/[\w-]+\.|images\/[\w-.]+\.((fill|max|min|width|height|scale)-\d|original))/,
+    /(data-block-key="[a-z0-9]{5}"|(\.[a-z]+|\/media)(\/[\w-]+)?\/(original_images\/[\w-]+\.|images\/[\w-.]+\.((fill|max|min|width|height|scale)-\d|original)))/,
   less_strict_but_long:
-    /((\.[a-z]+|\/media)(\/[\w-]+)?\/(images\/[\w-.]+\.original|original_images\/[\w-]+\.)|\/images\/[\w-.]+\.(fill|max|min|width|height|scale)-\d)/,
+    /(data-block-key="[a-z0-9]{5}"|(\.[a-z]+|\/media)(\/[\w-]+)?\/(images\/[\w-.]+\.original|original_images\/[\w-]+\.)|\/images\/[\w-.]+\.(fill|max|min|width|height|scale)-\d)/,
   // Very specific matching. No avoidable false positives.
   strictest:
-    /\/media\/(original_images\/[\w-]+\.|images\/[\w-.]+\.((fill|max|min)-\d+x\d+(-c\d+)?|(width|height|scale)-\d+|original)\.)/,
+    /(data-block-key="[a-z0-9]{5}"|\/media\/(original_images\/[\w-]+\.|images\/[\w-.]+\.((fill|max|min)-\d+x\d+(-c\d+)?|(width|height|scale)-\d+|original)\.))/,
   // Lax matching, with widespread false positives.
-  lax: /\/(original_images\/[\w-]+\.|images\/[\w-.]+\.((fill|max|min|width|height|scale)-\d|original))/,
+  lax: /(data-block-key="[a-z0-9]{5}"|\/(original_images\/[\w-]+\.|images\/[\w-.]+\.((fill|max|min|width|height|scale)-\d|original)))/,
   // Very lax matching based on rendition suffixes or original_images folder only.
   laxest:
-    /(\/original_images\/|\/[\w-.]+\.((fill|max|min|width|height|scale)-\d|original))/,
+    /(data-block-key="[a-z0-9]{5}"|\/original_images\/|\/[\w-.]+\.((fill|max|min|width|height|scale)-\d|original))/,
 };
 
 /**

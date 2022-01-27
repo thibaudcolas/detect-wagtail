@@ -22,7 +22,9 @@ This uses regular expressions to check whether images on the page match a predet
 
 [![](https://raw.githubusercontent.com/thibaudcolas/detect-wagtail/main/.github/regexper-diagram.svg?sanitize=true)](https://regexper.com/#%5C%2F%28original_images%5C%2F%5B%5Cw-%5D%2B%5C.%7Cimages%5C%2F%5B%5Cw-.%5D%2B%5C.%28%28fill%7Cmax%7Cmin%7Cwidth%7Cheight%7Cscale%29-%5Cd%7Coriginal%29%29)
 
-There can be [false positives](https://en.wikipedia.org/wiki/Precision_and_recall) with such a simple check, but it has the benefit of working regardless of whether the target site is directly served by Wagtail, or if Wagtail is used as a headless CMS.
+We also check whether the rich text content on the page matches how Wagtail stores this data.
+
+There can be [false positives](https://en.wikipedia.org/wiki/Precision_and_recall) with such simple checks, but they have the benefit of working regardless of whether the target site is directly served by Wagtail, or if Wagtail is used as a headless CMS.
 
 ## Related links
 

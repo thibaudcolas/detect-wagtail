@@ -1,6 +1,6 @@
 const { detectWagtail } = require("./detect-wagtail");
 
-describe("detect-wagtail true positives", () => {
+describe("detect-wagtail renditions true positives", () => {
   test.each`
     label                                         | fragment
     ${"fill-wwwxhhh"}                             | ${"https://media.bethebusiness.tools/images/191017_BTB_cornwall__1213-large.2e16d0ba.fill-822x650.jpg"}
@@ -45,7 +45,7 @@ describe("detect-wagtail true positives", () => {
   });
 });
 
-describe("detect-wagtail false negatives", () => {
+describe("detect-wagtail renditions false negatives", () => {
   test.each`
     label                                  | fragment
     ${"height-hh catalyst cloud"}          | ${"https://object-storage.nz-por-1.catalystcloud.io:443/v1/AUTH_52213f2d28354f499d85ec4722164456/catalystcloudnz_django_storage_prod/images/PaySaucered.original.height-180.jpg"}
@@ -61,7 +61,7 @@ describe("detect-wagtail false negatives", () => {
   });
 });
 
-describe("detect-wagtail false positives", () => {
+describe("detect-wagtail renditions false positives", () => {
   test.each`
     label                                    | fragment
     ${"scale-dddd"}                          | ${"www.northcountrypublicradio.org/news/images/Icon310.scale-1400.png"}
@@ -71,7 +71,7 @@ describe("detect-wagtail false positives", () => {
   });
 });
 
-describe("detect-wagtail true negatives", () => {
+describe("detect-wagtail renditions true negatives", () => {
   test.each`
     label                                  | fragment
     ${"width-ddd webflow"}                 | ${"https://global-uploads.webflow.com/5e25051eb2b6451f92115f43/5e38e792e654da74832fe5d0_FY18-partner-favicon-Expr3ss_V2_Lj5gmrm.width-330.png"}
@@ -107,6 +107,50 @@ describe("detect-wagtail true negatives", () => {
     ${"original_images Django"}            | ${"https://cdn.lazyone.com/CACHE/images/original_images/PlaidPackOceanPack/bff4e9094025e9c5ed07765ea07146ef.jpg"}
     ${"original_images cityprague"}        | ${"/Galerie/cerkvi/index_files/original_images/p0000002.jpg"}
     ${"local images folder original"}      | ${"./images/download_2_1559247989__04572.original.png"}
+  `("$label", ({ fragment }) => {
+    expect(detectWagtail(fragment)).toBe(false);
+  });
+});
+
+describe("detect-wagtail rich text true positives", () => {
+  test.each`
+    label             | fragment
+    ${"mplus.org.uk"} | ${'<li data-block-key="3so1f">Test</li>'}
+  `("$label", ({ fragment }) => {
+    expect(detectWagtail(fragment)).toBe(true);
+  });
+});
+
+// There aren’t any we’re aware of.
+// describe.skip("detect-wagtail rich text false negatives", () => {
+//   test.each`
+//     label            | fragment
+//     ${"placeholder"} | ${"placeholder"}
+//   `("$label", ({ fragment }) => {
+//     expect(detectWagtail(fragment)).toBe(true);
+//   });
+// });
+
+// There aren’t any we’re aware of.
+// describe.skip("detect-wagtail rich text false positives", () => {
+//   test.each`
+//     label            | fragment
+//     ${"placeholder"} | ${"placeholder"}
+//   `("$label", ({ fragment }) => {
+//     expect(detectWagtail(fragment)).toBe(true);
+//   });
+// });
+
+describe("detect-wagtail rich text true negatives", () => {
+  test.each`
+    label                              | fragment
+    ${"bbsonline.org / cambridge.org"} | ${'data-block-key="aop-block-html"'}
+    ${"dum-umeni.cz"}                  | ${'data-block-key="b366dfd02dc0447f83eed0e9dda2d351"'}
+    ${"fotoacademie.nl"}               | ${'data-block-key="1340"'}
+    ${"hagergroup.com / keuze.nl"}     | ${'data-block-key="3"'}
+    ${"palazzoversace.ae"}             | ${'data-block-key="home"'}
+    ${"palazzoversace.com.au"}         | ${'data-block-key=""'}
+    ${"textileeurope.com"}             | ${'data-block-key="241"'}
   `("$label", ({ fragment }) => {
     expect(detectWagtail(fragment)).toBe(false);
   });
