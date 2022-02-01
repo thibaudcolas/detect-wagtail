@@ -18,7 +18,7 @@ Wagtail’s [default renditions](https://github.com/wagtail/wagtail/blob/ba6f94d
 ('bgcolor', image_operations.BackgroundColorOperation),
 ```
 
-Sample rendition strings, see full [image renditions documentation](https://docs.wagtail.io/en/stable/topics/images.html).
+Sample rendition strings, see full [image renditions documentation](https://docs.wagtail.org/en/stable/topics/images.html).
 
 ```sh
 max-1000x500
