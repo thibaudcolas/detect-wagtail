@@ -35,5 +35,10 @@
     { packageNames: ["prettier"], groupName: "prettier", automerge: true },
     { packageNames: ["jest"], groupName: "jest", automerge: true },
     { packageNames: ["eslint"], groupName: "eslint", automerge: true },
+    {
+      packagePatterns: ["^actions/"],
+      groupName: "actions",
+      automerge: true,
+    },
   ],
 }
