@@ -22,7 +22,7 @@
     "wagtail"
   ],
   "devDependencies": {
-    "eslint": "8.21.0",
+    "eslint": "8.22.0",
     "jest": "28.1.3",
     "prettier": "2.7.1"
   },
