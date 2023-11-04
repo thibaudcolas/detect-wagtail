@@ -1,5 +1,6 @@
 {
   extends: ["config:base"],
+  dependencyDashboard: false,
   // https://renovatebot.com/docs/configuration-options/#commitbodytable
   commitBodyTable: true,
   // https://renovatebot.com/docs/configuration-options/#ignoredeps

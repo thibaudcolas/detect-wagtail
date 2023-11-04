@@ -10,8 +10,8 @@ You can run the detection with:
 
 - The online website, [detect-wagtail.netlify.app](https://detect-wagtail.netlify.app/).
 - A bookmarklet, also available from [detect-wagtail.netlify.app](https://detect-wagtail.netlify.app/).
-- A browser extension thanks to [Wappalyzer](https://github.com/AliasIO/wappalyzer).
-- A Node CLI, also thanks to [Wappalyzer](https://github.com/AliasIO/wappalyzer).
+- A browser extension thanks to [Wappalyzer](https://www.wappalyzer.com/technologies/cms/wagtail/).
+- A Node CLI, also thanks to [Wappalyzer](https://www.wappalyzer.com/technologies/cms/wagtail/).
 - As an npm package for more custom needs, [detect-wagtail](https://www.npmjs.com/package/detect-wagtail)
 
 ## How it works
@@ -29,7 +29,7 @@ There can be [false positives](https://en.wikipedia.org/wiki/Precision_and_recal
 ## Related links
 
 - [Detecting Wagtail in the wild](https://thib.me/detecting-wagtail-in-the-wild)
-- [Wappalyzer](https://github.com/AliasIO/wappalyzer)
+- [Wappalyzer](https://www.wappalyzer.com/technologies/cms/wagtail/)
 - [WhatCMS.org](https://whatcms.org/c/Wagtail)
 - [detect-django-version](https://github.com/caioariede/detect-django-version)
 - [Use consistent heuristics to tell if a site is made with Wagtail](https://github.com/springload/madewithwagtail/issues/62)
