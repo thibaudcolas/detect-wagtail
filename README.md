@@ -1,6 +1,6 @@
 # [Detect Wagtail <img src="https://raw.githubusercontent.com/thibaudcolas/detect-wagtail/main/.github/logo.svg?sanitize=true" width="100" height="100" align="right" alt="">](https://detect-wagtail.netlify.app/)
 
-[![detect-wagtail on npm](https://img.shields.io/npm/v/detect-wagtail.svg)](https://www.npmjs.com/package/detect-wagtail) [![Build status](https://github.com/thibaudcolas/detect-wagtail/workflows/CI/badge.svg)](https://github.com/thibaudcolas/detect-wagtail/actions) [![Netlify Status](https://api.netlify.com/api/v1/badges/2c9ab0a7-0f9f-4e67-83a5-4304bc4ddbd0/deploy-status)](https://app.netlify.com/sites/detect-wagtail/deploys)
+[![detect-wagtail on npm](https://img.shields.io/npm/v/detect-wagtail.svg)](https://www.npmjs.com/package/detect-wagtail)
 
 > Detect whether a site or page is built with [Wagtail](https://github.com/wagtail/wagtail).
 
@@ -11,8 +11,36 @@ You can run the detection with:
 - The online website, [detect-wagtail.netlify.app](https://detect-wagtail.netlify.app/).
 - A bookmarklet, also available from [detect-wagtail.netlify.app](https://detect-wagtail.netlify.app/).
 - A browser extension thanks to [Wappalyzer](https://www.wappalyzer.com/technologies/cms/wagtail/).
-- A Node CLI, also thanks to [Wappalyzer](https://www.wappalyzer.com/technologies/cms/wagtail/).
+- A Node CLI, also thanks to [Wappalyzer](https://github.com/httparchive/wappalyzer).
 - As an npm package for more custom needs, [detect-wagtail](https://www.npmjs.com/package/detect-wagtail)
+
+## npm package
+
+```js
+const { detectWagtail, renditions } = require('detect-wagtail');
+
+// Example HTML string that may contain Wagtail image renditions
+const htmlContent = `<div><img src="/media/images/example.fill-300.jpg"></div>`;
+
+// Use the default strict pattern to check for Wagtail markup
+if (detectWagtail(htmlContent)) {
+  console.log('Wagtail detected!');
+}
+```
+
+The `renditions` object also directly exposes 5 regular expressions depending on how strict or lax the matching should be:
+
+- `strict`: Optimized for real-world relevance, minimizing false positives.
+- `less_strict_but_long`: A bit looser than strict, capturing additional cases.
+- `strictest`: Very specific matching with no avoidable false positives.
+- `lax`: Looser matching that may yield more false positives.
+- `laxest`: The most lenient pattern based solely on rendition suffixes or the original_images folder.
+
+```js
+if (renditions.lax.test(htmlContent)) {
+  console.log('Detected potential Wagtail markup (using lax matching).');
+}
+```
 
 ## How it works
 
