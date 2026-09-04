@@ -80,12 +80,4 @@ There can be [false positives](https://en.wikipedia.org/wiki/Precision_and_recal
 
 ## Contributing
 
-```sh
-git clone git@github.com:thibaudcolas/detect-wagtail.git
-cd detect-wagtail
-nvm use
-npm install
-npm test
-npm run lint
-npm run dev
-```
+See [CONTRIBUTING.md](CONTRIBUTING.md) for setup and development commands.
