@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="color-scheme" content="light dark" />
     <title>Detect Wagtail</title>
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
@@ -32,9 +32,10 @@
     />
     <style>
       html {
-        font-family: "-apple-system", "BlinkMacSystemFont", "San Francisco",
-          "Segoe UI", "Helvetica Neue", "sans-serif", "Apple Color Emoji",
-          "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+        font-family:
+          "-apple-system", "BlinkMacSystemFont", "San Francisco", "Segoe UI",
+          "Helvetica Neue", "sans-serif", "Apple Color Emoji", "Segoe UI Emoji",
+          "Segoe UI Symbol", "Noto Color Emoji";
       }
 
       body {
@@ -93,6 +94,30 @@
       footer {
         margin-top: 5em;
       }
+
+      :root {
+        color-scheme: light dark;
+      }
+
+      @media (prefers-color-scheme: dark) {
+        body {
+          background-color: #17332c;
+          color: #e9f5ef;
+        }
+
+        a {
+          color: #93c5fd;
+        }
+      }
+
+      :focus-visible {
+        outline: 3px solid currentColor;
+        outline-offset: 2px;
+      }
+
+      .results:focus {
+        outline: none;
+      }
     </style>
   </head>
   <body>
@@ -109,20 +134,29 @@
           >image renditions</a
         >, and rich text so only works when pages use those features.
       </p>
+
       <form action="/.netlify/functions/detect" method="GET" class="form">
-        <label>
-          <span class="label">URL:</span>
-          <input
-            type="url"
-            name="url"
-            class="field"
-            placeholder="https://www.example.com/"
-          />
-        </label>
-        <button type="submit" class="button">Submit</button>
+        <label class="label" for="url">URL:</label>
+        <input
+          id="url"
+          type="url"
+          name="url"
+          class="field"
+          placeholder="https://www.example.com/"
+          autocomplete="url"
+          inputmode="url"
+          spellcheck="false"
+        />
+        <button type="submit" class="button">Check site</button>
       </form>
-      <div class="results">
-        <div class="status" role="alert" data-loading="Loading…"></div>
+      <noscript>
+        <p>
+          This form requires JavaScript. Without it, submitting opens the raw
+          detection result as JSON.
+        </p>
+      </noscript>
+      <div class="results" tabindex="-1">
+        <div class="status" role="status" data-loading="Loading…"></div>
         <template data-code="error">
           Uh-oh, there was an error, we couldn’t analyze that URL.
         </template>
@@ -161,14 +195,17 @@
       <a
         href="javascript:(()%3D%3E%7Bconst%20s%3Ddocument.createElement('script')%3Bs.src%3D'https%3A%2F%2Fdetect-wagtail.netlify.app%2Fbookmarklet.js'%3Bdocument.body.appendChild(s)%3B%7D)()%3B"
         class="bookmarklet"
+        aria-label="Drag to your bookmarks bar, then click on any page to detect Wagtail"
+        title="Drag to your bookmarks bar, then click on any page to detect Wagtail"
         >Wagtail?</a
       >
 
       <p>
-        Alternatively, you can also use
-        <a href="https://www.wappalyzer.com/technologies/cms/">Wappalyzer</a> or
-        <a href="https://whatcms.org/c/Wagtail">WhatCMS.org</a>, or 
-        <a href="https://github.com/thibaudcolas/detect-wagtail">the npm package</a>.
+        Alternatively, you can run the detection from your terminal with
+        <code>npx detect-wagtail &lt;url&gt;</code>, or use
+        <a href="https://github.com/thibaudcolas/detect-wagtail"
+          >the npm package</a
+        >.
       </p>
 
       <h2 id="how-it-works">How it works</h2>
@@ -239,12 +276,31 @@
         const form = document.querySelector("form");
         const url = form.querySelector('[name="url"]');
         const results = document.querySelector(".results");
-        const status = results.querySelector('[role="alert"]');
+        let timeout;
+        const status = results.querySelector('[role="status"]');
+
+        const show = (code) => {
+          clearTimeout(timeout);
+          const template =
+            document.querySelector(`[data-code="${code}"]`) ||
+            document.querySelector(`[data-code="error"]`);
+          status.innerHTML = template.innerHTML;
+          results.removeAttribute("aria-busy");
+          results.focus();
+        };
+
+        const check = (target) => {
+          window
+            .fetch(`/.netlify/functions/detect?url=${target}`)
+            .then((res) => res.json())
+            .then((res) => show(res.code))
+            .catch(() => show("error"));
+        };
 
         form.addEventListener("submit", (e) => {
           e.preventDefault();
 
-          let timeout = setTimeout(() => {
+          timeout = setTimeout(() => {
             status.innerHTML = status.dataset.loading;
           }, 300);
 
@@ -254,16 +310,9 @@
           pageURL.searchParams.set("url", target);
           window.history.pushState({}, "", pageURL);
 
-          window
-            .fetch(`/.netlify/functions/detect?url=${target}`)
-            .then((res) => res.json())
-            .then((res) => {
-              clearTimeout(timeout);
+          results.setAttribute("aria-busy", "true");
 
-              status.innerHTML = document.querySelector(
-                `[data-code="${res.code}"]`,
-              ).innerHTML;
-            });
+          check(target);
         });
 
         const urlParams = new URLSearchParams(window.location.search);
@@ -274,21 +323,14 @@
             new URL(window.decodeURIComponent(urlParam));
           } catch (e) {
             console.error(e);
-            status.innerHTML =
-              document.querySelector(`[data-code="error"]`).innerHTML;
+            show("error");
             return;
           }
           url.value = window.decodeURIComponent(urlParam);
           const target = window.encodeURIComponent(url.value);
 
-          window
-            .fetch(`/.netlify/functions/detect?url=${target}`)
-            .then((res) => res.json())
-            .then((res) => {
-              status.innerHTML = document.querySelector(
-                `[data-code="${res.code}"]`,
-              ).innerHTML;
-            });
+          results.setAttribute("aria-busy", "true");
+          check(target);
         }
       };
 
