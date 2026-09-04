@@ -8,3 +8,4 @@ coverage_html_report
 build
 dist
 data
+package-lock.json

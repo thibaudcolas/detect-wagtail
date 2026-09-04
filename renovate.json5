@@ -1,5 +1,5 @@
 {
-  extends: ["config:base"],
+  extends: ["config:recommended"],
   dependencyDashboard: false,
   // https://renovatebot.com/docs/configuration-options/#commitbodytable
   commitBodyTable: true,
@@ -30,15 +30,16 @@
       automerge: true,
     },
     // https://renovatebot.com/docs/node/#configuring-support-policy
-    supportPolicy: ["current"],
+    supportPolicy: ["lts", "current"],
   },
   packageRules: [
     // Node packages.
     { packageNames: ["prettier"], groupName: "prettier", automerge: true },
-    { packageNames: ["jest"], groupName: "jest", automerge: true },
+    { packageNames: ["vitest"], groupName: "vitest", automerge: true },
     { packageNames: ["eslint"], groupName: "eslint", automerge: true },
+    { packagePatterns: ["^actions/"], groupName: "actions", automerge: true },
     {
-      packagePatterns: ["^actions/"],
+      packagePatterns: ["^zizmorcore/"],
       groupName: "actions",
       automerge: true,
     },

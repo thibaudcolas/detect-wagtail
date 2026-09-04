@@ -2,8 +2,20 @@
   "name": "detect-wagtail",
   "version": "0.1.0",
   "main": "./src/detect-wagtail.js",
+  "types": "./src/detect-wagtail.d.ts",
+  "exports": {
+    ".": {
+      "types": "./src/detect-wagtail.d.ts",
+      "default": "./src/detect-wagtail.js"
+    }
+  },
+  "bin": {
+    "detect-wagtail": "./cli.js"
+  },
   "files": [
-    "src/detect-wagtail.js"
+    "cli.js",
+    "src/detect-wagtail.js",
+    "src/detect-wagtail.d.ts"
   ],
   "description": "Detect whether a site or page is built with Wagtail",
   "author": "Thibaud Colas",
@@ -21,17 +33,23 @@
     "detect",
     "wagtail"
   ],
+  "engines": {
+    "node": ">=22"
+  },
   "devDependencies": {
-    "eslint": "8.56.0",
-    "jest": "29.7.0",
-    "prettier": "3.2.4"
+    "@eslint/js": "^9.39.5",
+    "eslint": "^10.9.1",
+    "globals": "^16.5.0",
+    "prettier": "^3.9.6",
+    "vitest": "^5.0.0"
   },
   "scripts": {
     "prepare": "./.githooks/deploy.sh",
-    "lint": "eslint --report-unused-disable-directives . && prettier --check '**/?(.)*.{md,css,scss,js,json,json5,yaml,yml,html}'",
-    "format": "prettier --write '**/?(.)*.{md,css,scss,js,json,json5,yaml,yml,html}'",
-    "test": "jest",
-    "test:watch": "jest --watch",
+    "lint": "eslint . && prettier --check .",
+    "format": "prettier --write .",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "dev": "netlify dev",
     "report:package": " npm pack --loglevel notice 2>&1 >/dev/null | sed -e 's/^npm notice //' && rm *.tgz"
   }
 }

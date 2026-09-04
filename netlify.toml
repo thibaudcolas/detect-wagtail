@@ -4,3 +4,7 @@
   publish = "public"
   command = "echo 'All done!'"
   functions = "functions"
+  node_bundler = "esbuild"
+
+[build.environment]
+  NODE_VERSION = "26"

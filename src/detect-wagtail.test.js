@@ -1,4 +1,5 @@
-const { detectWagtail } = require("./detect-wagtail");
+import { describe, expect, test } from "vitest";
+import { detectWagtail } from "./detect-wagtail.js";
 
 describe("detect-wagtail renditions true positives", () => {
   test.each`
