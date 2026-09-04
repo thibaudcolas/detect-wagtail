@@ -4,6 +4,8 @@
 
 ## Unreleased
 
+## [v1.0.0](https://github.com/thibaudcolas/detect-wagtail/releases/tag/v1.0.0) (2026-09-04)
+
 ### Added
 
 - TypeScript type definitions.

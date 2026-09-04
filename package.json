@@ -1,6 +1,6 @@
 {
   "name": "detect-wagtail",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "main": "./src/detect-wagtail.js",
   "types": "./src/detect-wagtail.d.ts",
   "exports": {
