@@ -8,23 +8,41 @@ You can run the detection with:
 
 - The online website, [detect-wagtail.netlify.app](https://detect-wagtail.netlify.app/).
 - A bookmarklet, also available from [detect-wagtail.netlify.app](https://detect-wagtail.netlify.app/).
-- A browser extension thanks to [Wappalyzer](https://www.wappalyzer.com/technologies/cms/wagtail/).
-- A Node CLI, also thanks to [Wappalyzer](https://github.com/httparchive/wappalyzer).
+- A CLI, without installing anything: `npx detect-wagtail <url>`
 - As an npm package for more custom needs, [detect-wagtail](https://www.npmjs.com/package/detect-wagtail)
+
+## CLI
+
+```sh
+npx detect-wagtail https://example.com
+```
+
+Options:
+
+- `--json`: output machine-readable JSON.
+- `--strictness <level>`: strictness of the detection, one of `strict` (default), `less_strict_but_long`, `strictest`, `lax`, `laxest`.
+
+Exit codes: `0` Wagtail detected on every checked URL, `1` not detected on at least one, `2` error (invalid argument, invalid URL, or fetch failure).
 
 ## npm package
 
 ```js
-const { detectWagtail, renditions } = require('detect-wagtail');
+const { detectWagtail, renditions } = require("detect-wagtail");
 
 // Example HTML string that may contain Wagtail image renditions
 const htmlContent = `<div><img src="/media/images/example.fill-300.jpg"></div>`;
 
 // Use the default strict pattern to check for Wagtail markup
 if (detectWagtail(htmlContent)) {
-  console.log('Wagtail detected!');
+  console.log("Wagtail detected!");
 }
 ```
+
+```js
+import { detectWagtail, renditions } from "detect-wagtail";
+```
+
+TypeScript type definitions are bundled with the package.
 
 The `renditions` object also directly exposes 5 regular expressions depending on how strict or lax the matching should be:
 
@@ -36,7 +54,7 @@ The `renditions` object also directly exposes 5 regular expressions depending on
 
 ```js
 if (renditions.lax.test(htmlContent)) {
-  console.log('Detected potential Wagtail markup (using lax matching).');
+  console.log("Detected potential Wagtail markup (using lax matching).");
 }
 ```
 
@@ -67,7 +85,7 @@ git clone git@github.com:thibaudcolas/detect-wagtail.git
 cd detect-wagtail
 nvm use
 npm install
-npm run test
-npm install netlify-cli -g
-netlify dev
+npm test
+npm run lint
+npm run dev
 ```

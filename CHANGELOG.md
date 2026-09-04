@@ -4,22 +4,26 @@
 
 ## Unreleased
 
-## [v0.1.0](https://github.com/thibaudcolas/detect-wagtail/releases/tag/v0.1.0)
-
-First usable release!
-
----
-
-## [vx.y.z](https://github.com/thibaudcolas/detect-wagtail/releases/tag/x.y.z) (Template: <http://keepachangelog.com/>)
-
 ### Added
 
-- Something was added to the API / a new feature was introduced.
+- TypeScript type definitions.
+- Netlify Functions v2.
+- Command-line interface (`npx detect-wagtail <url>`).
 
 ### Changed
 
-### Fixed
+- Node 26.
+- ESLint 9 flat config.
+- Vitest replaces Jest.
+- CI runs on ubuntu-26.04-arm runners.
+- GitHub Actions pinned to commit SHAs.
+- zizmor security audit of workflows in CI.
+- Renovate tracks Node LTS and current releases.
 
 ### Removed
 
-### How to upgrade
+- Legacy Netlify function format.
+
+## [v0.1.0](https://github.com/thibaudcolas/detect-wagtail/releases/tag/v0.1.0)
+
+First usable release!

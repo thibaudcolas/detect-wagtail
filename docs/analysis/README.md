@@ -45,7 +45,7 @@ To try this out,
 
 ```sh
 curl https://raw.githubusercontent.com/GSA/digitalgov.gov/main/content/resources/content-management-systems-used-by-government-agencies.md | grep '](' | cut -d '(' -f 2 | cut -d ')' -f 1 | sort | uniq > us.csv
-../fetch-sites us.csv sites
+../fetch-sites.sh us.csv sites
 ag '(data-block-key="[a-z0-9]{5}"|\/(original_images\/[\w-]+\.|images\/[\w-.]+\.((fill|max|min|width|height|scale)-\d|original)))' sites -l
 ```
 

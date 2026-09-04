@@ -1,5 +1,7 @@
 # Documentation
 
+Research notes behind the detection heuristics.
+
 ## Renditions
 
 Wagtail’s [default renditions](https://github.com/wagtail/wagtail/blob/ba6f94def17b8bbc66002cbc7af60ed422658ff1/wagtail/images/wagtail_hooks.py#L110-L124):
@@ -80,7 +82,7 @@ mca.com.au.html:77: <script>var windowApiData = {"src": "/files/images/Pipilotti
 1. Update the test suite so the known false positives and false negatives are kept in check
 2. Try the new regular expressions on the Majestic Million
 
-## Similar Wappalyzer regular exressions
+## Similar Wappalyzer regular expressions
 
 ```json
 "<[^>]+(?:https?:)?//(?:assets|downloads|images|videos)\\.(?:ct?fassets\\.net|contentful\\.com)",
